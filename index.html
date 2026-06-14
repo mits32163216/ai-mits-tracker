@@ -172,14 +172,16 @@ const PHASES = [
       {id:"r7", lvl:"🔴", lock:"", who:"🤖", label:"UTAGE → Dify webhook 実装（メアド入力時に Report JSON 取得）", sub:""}
     ],
     omote:[
-      {id:"f1", lvl:"🟡", lock:"🚧", who:"🤖", label:"AB 入口 LP（HTML完成・Mits検収待ち）", sub:"_wip/ab_entrance_lp_v1_20260614.html 案A実装＋4チップ＋Mitsボイス"},
-      {id:"f2", lvl:"🔴", lock:"", who:"🤖", label:"チャット末尾「PDFを受け取る」ボタン or 完了動線", sub:"udify.app のチャット UI 上で導線設計"},
-      {id:"f3", lvl:"🟡", lock:"🚧", who:"🤝", label:"振り分けサンクスページ（HTML完成・Mits検収待ち）／UTAGEオプトインフォーム本体", sub:"_wip/ab_redirect_thanks_v1_20260614.html hash偶奇で2.1(9f6g2g..)/v3(9FU8pR..)決定"},
-      {id:"f4", lvl:"🔴", lock:"", who:"🤖", label:"UTAGE HTML メールテンプレート（Branch説明+推薦教材リンク）", sub:"ブロック要素で構築"},
-      {id:"f5", lvl:"🔴", lock:"", who:"🤖", label:"PDF送付方法決定（メール添付 or ダウンロードURL）", sub:"Cloudflare休止下なので UTAGE 直配信"},
-      {id:"f6", lvl:"🔴", lock:"", who:"🤖", label:"Skool 5コース / UTAGE The Library 8コースのリンク埋め込み", sub:"Branch ごとに別出し"},
-      {id:"f7", lvl:"🔴", lock:"", who:"🤝", label:"UTAGE タグ「AI-MITS_利用済」付与・再訪識別", sub:"再来訪トリガー"},
-      {id:"f8", lvl:"🔴", lock:"", who:"🧑", label:"同意事項・利用規約・プライバシーポリシー検収＆公開（既存ドラフト）", sub:"既存タスク#3 で雛形済"}
+      {id:"f1", lvl:"🟢", lock:"🔒", who:"🤖", label:"既存UTAGE 0_入口（V3A9LG00dL2S/i50uCEKjqC9Q）構築済", sub:"案内＋同意4点＋LINE登録ボタン＋法的フッター（2026-06-12）"},
+      {id:"f2", lvl:"🟡", lock:"", who:"🧑", label:"あいさつLINE（SKGD9kYT92CI）draft→配信中（Mits 1クリック）", sub:"API safety_restriction で AI不可・Mits専権"},
+      {id:"f3", lvl:"🟢", lock:"🔒", who:"🤖", label:"UTAGEネイティブAB（ABステップXN7acYfA4sq5）構築済", sub:"page A LMfcyJkjkzAh=2.1 iframe（本日差替）／ page B hUMsNrqy5QBh=v3 iframe"},
+      {id:"f4", lvl:"🟢", lock:"", who:"🤖", label:"AB page A iframe src を本番v2→2.1（9f6g2gdTo8eAEthO）差替", sub:"本日 2026-06-14 実施・本番v2不可侵復元と整合"},
+      {id:"f5", lvl:"🟡", lock:"", who:"🤖", label:"既存サンクス（CeXloUqVEqNm/8rZR2qCGXNjJ）レポート枠/PDFボタン/「次回はここから」JS", sub:"?arm=A/B → ページ直URL固定済（実機検証済）"},
+      {id:"f6", lvl:"🔴", lock:"", who:"🤖", label:"既存サンクスに Branch×教材推薦埋込（コースBkTnGFo0Lpsa経由）", sub:"Branch v2.0 全97件付与完了→ いつでも実装可"},
+      {id:"f7", lvl:"🔴", lock:"🚧", who:"🧑", label:"LINEログイン認証チャネル作成（2_ログイン step Nfg3iO7vokkY）", sub:"利用規約/プラポリ公開URLが前提条件・Mits専権"},
+      {id:"f8", lvl:"🟡", lock:"🚧", who:"🧑", label:"terms_draft_v1 検収＆公開（利用規約・プラポリは既存/p/0F02UCmBDSpz流用可）", sub:"f7のLINEチャネル作成前提条件"},
+      {id:"f9", lvl:"🔴", lock:"", who:"🤖", label:"リマインダ実装（base_date=完了予定日基準・LINE4本+メール4本）", sub:"message_create で base_date 逆算配信スキーマ確定済"},
+      {id:"f10",lvl:"🟢", lock:"", who:"🤝", label:"通しテスト：/p/V3A9LG00dL2S→LINE登録→チャット→サンクス→専用URL固定確認", sub:"AB分離完成後の最終検証"}
     ]
   },
   {
