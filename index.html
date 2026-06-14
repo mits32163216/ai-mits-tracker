@@ -212,7 +212,10 @@ const PHASES = [
       {id:"f21",lvl:"🔴", lock:"🚧", who:"🤖", label:"2回目以降ページ刷新：メアド認証→進行中インシデント一覧→選択or新規（ITサポートのチケット型）", sub:"<b>→ あと：</b>現在の『メアドhash→AB チャット直行』を廃止。代わりに進行中インシデントを Notion DB から listing→『INC-007 ペルソナの仮決め（先週）』形式で一覧→クリック=振り返り or 『+新しいご相談』=新規コンサル直行"},
       {id:"f22",lvl:"🔴", lock:"🚧", who:"🤖", label:"新コンサル起動時に振り返り要約をDify system prompt 注入", sub:"<b>→ あと：</b>振り返り完了→URL クエリで incident_id + summary_id を新コンサル(2.1/v3)に渡す→Dify chatflow で Notion DB から要約fetch→system prompt 注入で文脈接続『先ほどの振り返りを踏まえると…』"},
       {id:"f23",lvl:"🔴", lock:"🚧", who:"🤖", label:"インシデントクローズ判定機構", sub:"<b>→ あと：</b>コンサル完了時に AI 自動 or ユーザー手動でステータス更新（オープン→進行中→クローズ）。クローズ済インシデントは2回目以降の一覧に出さない（参照履歴に残す）"},
-      {id:"f24",lvl:"🔴", lock:"🚧", who:"🤖", label:"AB チャットに15分セッションタイマー＋残3分で『最後の…です』告知＋0分で自動終了", sub:"<b>→ あと：</b>セッション開始時刻を localStorage 保存→ヘッダーに残り時間カウントダウン表示→残3分時点で AI 応答に『最後の質問にしましょう』プレフィックス挿入→0分で自動セッション終了→振り返り/レポート生成画面へ自動遷移。Mitsコンサル流儀『時間で切る』の実装"}
+      {id:"f24",lvl:"🔴", lock:"🚧", who:"🤖", label:"AB チャットに15分セッションタイマー＋残3分で『最後の…です』告知＋0分で自動終了", sub:"<b>→ あと：</b>セッション開始時刻を localStorage 保存→ヘッダーに残り時間カウントダウン表示→残3分時点で AI 応答に『最後の質問にしましょう』プレフィックス挿入→0分で自動セッション終了→振り返り/レポート生成画面へ自動遷移。Mitsコンサル流儀『時間で切る』の実装"},
+      {id:"f25",lvl:"🔴", lock:"🚧", who:"🤖", label:"【Phase 1・短期】Dify Sandbox→Pro $59 アップグレード＋UTAGE側UI自前実装", sub:"<b>→ あと：</b>①Dify 課金 Sandbox→Pro $59/月（API無制限化・WebAppロゴ消去込）②UTAGE 側で自前 HTML/JS チャットUI を構築→裏で Dify API 直叩き（既存 v2.1/v3 chatflow 維持）③Mits構想（インシデント一覧・15分タイマー・振り返り・おかえりなさい・f19〜f24全部）をこの自前UI上で実装。バックエンドはDifyのままなのでリスク低・失敗してもDify標準WebAppに戻せる"},
+      {id:"f26",lvl:"🔴", lock:"🚧", who:"🤖", label:"【Phase 2・中期】バックエンド Dify chatflow → Anthropic API 直叩き + Notion DB 置換", sub:"<b>→ あと：</b>Phase 1完了後・AI-Mits利用者推移を見て判断。①Dify v2.1/v3 のノード構造を Anthropic SDK 直叩きで再実装（stream + tool_use 標準機能で代替）②RAG（現Indexing=Economical）を Notion DB 構造化データ system prompt 注入に置換（CORPUS2SKILL目次方式と整合）③並列稼働で実機検証→切替判定"},
+      {id:"f27",lvl:"🔴", lock:"🚧", who:"🤖", label:"【Phase 3・長期】Dify 完全離脱・Pro $59 解約・自前バックエンドのみ", sub:"<b>→ あと：</b>Phase 2 並列稼働検証で自前バックエンド優位確認後・Dify Pro 解約→自前構成のみ。コストはLLM利用料（Anthropic直）+ホスティング$0〜20/月のみ。ベンダーロック解消・主目的（ナレッジ蓄積・Mits手作業フィルター駆動）と完全合致"}
     ]
   },
   {
