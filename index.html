@@ -152,12 +152,12 @@ const PHASES = [
     meta:"5ステップパイプライン・Branch付与",
     ura:[
       {id:"1-1a", lvl:"🟢", lock:"", who:"🤖", label:"MK-1〜97 を新DB v2 にテンプレ5セクション格納（移管済）", sub:"5a32a234..."},
-      {id:"1-1b", lvl:"🟡", lock:"", who:"🤝", label:"職人技抽出（切り分けシーケンス / 判断基準）の Mits確認サイクル", sub:"必要に応じて随時"},
+      {id:"1-1b", lvl:"🟡", lock:"", who:"🤝", label:"職人技抽出（切り分けシーケンス / 判断基準）の Mits確認サイクル", sub:"<b>→ あと：</b>新規MKが入るたびにMitsが本文確認＋切り分け加筆。継続作業（タイミングなし・Mits意欲ベース）"},
       {id:"1-1c", lvl:"🟢", lock:"", who:"🤖", label:"新規MK拡充（Nottaから取り込み）", sub:"継続パイプ"},
       {id:"1-2",  lvl:"🟢", lock:"", who:"🤖", label:"発話者ラベル付け（Notta自動）", sub:""},
       {id:"4-3", lvl:"🟢", lock:"", who:"🤖", label:"Branch v2.0 全97件 multi_select 付与（Primary + Secondary）", sub:"本日完了 / 2026-06-14"},
       {id:"4-4",  lvl:"🔴", lock:"", who:"🧑", label:"K（コミュニティ）3件のみ → Mits確認で増やすか判断", sub:""},
-      {id:"7",    lvl:"🟡", lock:"", who:"🤖", label:"判定記録DB v2 のグレー（Mits判定希望）4件処理", sub:"MK-82/85 Step含む"},
+      {id:"7",    lvl:"🟡", lock:"", who:"🤖", label:"判定記録DB v2 のグレー（Mits判定希望）4件処理", sub:"<b>→ あと：</b>MK-82 Step6（E vs K）／MK-85 Step4（D vs F）等4件をMitsが判定→該当ステップに primary を確定書き込み"},
       {id:"8",    lvl:"🔴", lock:"🚧", who:"🤝", label:"動画在庫DB の Branch v2.0 タグ付け（円環の推薦先）", sub:"Mits手書き+AI素案二段"},
       {id:"9",    lvl:"🔴", lock:"🚧", who:"🤝", label:"Branch×教材マッピング表 v2.0 再生成（v1.1を更新）", sub:"動画×UTAGE×Skool 統合"}
     ],
@@ -170,7 +170,7 @@ const PHASES = [
       {id:"e1", lvl:"🟢", lock:"🔒", who:"🤖", label:"v2本番（e472bc1f）= sonnet-4-6 / temp 0.4 / 0.7 / 不可侵に復元", sub:"2026-04-16 状態"},
       {id:"e2", lvl:"🟢", lock:"", who:"🤖", label:"2.1（14d6df13・旧v2-0603）= opus-4-6 / temp 0.4・0.7", sub:"AB「A」候補"},
       {id:"e3", lvl:"🟢", lock:"", who:"🤖", label:"v3（1a8d8b9c）N12 = opus-4-6 / temp 0.4", sub:"AB「B」候補"},
-      {id:"e4", lvl:"🟡", lock:"", who:"🤖", label:"v3 N6_mk_judge（opus-4-8/cp 空）→ opus-4-6/temp 0.1〜0.2 に微調整", sub:"決定性重視"},
+      {id:"e4", lvl:"🟡", lock:"", who:"🤖", label:"v3 N6_mk_judge（opus-4-8/cp 空）→ opus-4-6/temp 0.1〜0.2 に微調整", sub:"<b>→ あと：</b>Mits Go で N6 ノードの model=opus-4-6 / temperature=0.1〜0.2 に変更→Publish。1分で完了"},
       {id:"e5", lvl:"🟢", lock:"", who:"🤖", label:"AB測定 N1〜N6 で 2.1=10.17 / v3=10.83（v3優勢 +0.66）", sub:"小差・本番ABで大数判定"}
     ],
     omote:[]
@@ -183,7 +183,7 @@ const PHASES = [
       {id:"r2", lvl:"🔴", lock:"", who:"🤖", label:"N1 会話まとめLLM（opus-4-6・要約500字）", sub:""},
       {id:"r3", lvl:"🔴", lock:"", who:"🤖", label:"N2 Branch分類LLM（A〜L・MK DB v2 Knowledge Retrieval併用）", sub:""},
       {id:"r4", lvl:"🔴", lock:"🔒", who:"🤖", label:"N3 Report JSON 組成（report_template変数に1:1）", sub:"summary/branches/resources/next_action/report_id"},
-      {id:"r5", lvl:"🟡", lock:"", who:"🤖", label:"report_template_v1_20260603.html を v2 にリライト（変数差込確認）", sub:""},
+      {id:"r5", lvl:"🟡", lock:"", who:"🤖", label:"report_template_v1_20260603.html を v2 にリライト（変数差込確認）", sub:"<b>→ あと：</b>Report Generator が出力する Report JSON 構造（summary/branch/resources）に合わせて変数 placeholder を {{summary}}・{{branch.primary}}・{{resources[]}} 等に書き換え→サンプルJSONで差込テスト→PDFレンダリング設計"},
       {id:"r6", lvl:"🔴", lock:"", who:"🤖", label:"Report Generator API key 発行 → UTAGE webhook から叩ける状態", sub:""},
       {id:"r7", lvl:"🔴", lock:"", who:"🤖", label:"UTAGE → Dify webhook 実装（メアド入力時に Report JSON 取得）", sub:""}
     ],
@@ -192,19 +192,19 @@ const PHASES = [
       {id:"f2", lvl:"🟢", lock:"🔒", who:"🤖", label:"ABステップ UTAGEネイティブAB（XN7acYfA4sq5）構築済", sub:"page A=2.1（9f6g2g..）／ page B=v3（9FU8pR..）／自動50:50振り分け"},
       {id:"f3", lvl:"🟢", lock:"", who:"🤖", label:"3_サンクス night design 適用＋LINE登録CTA（8rZR2qCGXNjJ）", sub:"本日2026-06-14・NIGHT navy HEADER＋緑LINE誘導カード＋専用URL表示"},
       {id:"f3b",lvl:"🟢", lock:"", who:"🤖", label:"入口/AB-A/AB-B/サンクス 4ページ night design 統一適用", sub:"本日2026-06-14・Mits design template・.lp-root スコープ・全ページ実機反映済"},
-      {id:"f4", lvl:"🟡", lock:"🚧", who:"🧑", label:"あいさつLINE（SKGD9kYT92CI・PDF配信版）draft→配信中（Mits 1クリック）", sub:"API safety_restriction で AI不可・Mits専権／URL: utage-system.com/account/vNItAbojIgEK/scenario/XU7Gfd7XoiCQ/step"},
-      {id:"f5", lvl:"🟡", lock:"🚧", who:"🤖", label:"Report Generator Dify アプリ v0.2 publish（7c6bee73）", sub:"本日2026-06-14・6ノードe2e succeeded・Start→ResolveKey→HTTP→Summary→Branch→Code→End・実会話IDで本動作 + Branch×教材動的化が次工程"},
+      {id:"f4", lvl:"🟡", lock:"🚧", who:"🧑", label:"あいさつLINE（SKGD9kYT92CI・PDF配信版）draft→配信中（Mits 1クリック）", sub:"<b>→ あと：</b>Mits が utage-system.com/account/vNItAbojIgEK/scenario/XU7Gfd7XoiCQ/step を開く→『AI-Mits_あいさつ』をクリック→配信ステータスを draft → 配信中 に切替→保存。1分。これで通しテスト可能"},
+      {id:"f5", lvl:"🟡", lock:"🚧", who:"🤖", label:"Report Generator Dify アプリ v0.2 publish（7c6bee73）", sub:"<b>→ あと：</b>①実在の conversation_id（2.1 or v3 のチャット履歴 ID）で smoke test 実行 → HTTPノード body 内の conversation_id 渡し方を検証&修正（現状 URLパラメータ全部が連結される疑い）／②Code ノードの REC ハードコード辞書を Notion DB 連動の動的引きに置換／③Mits 検収"},
       {id:"f6", lvl:"🔴", lock:"", who:"🤖", label:"Branch×教材推薦の動的差替（A〜L全12軸）", sub:"Branch v2.0 全97件付与完了→ サンクス element 10 を動的化"},
       {id:"f7", lvl:"🔴", lock:"", who:"🤖", label:"紹介コード実装（Cloudflare休止→UTAGEタグ運用に切替）", sub:"紹介者固有URL→UTAGEタグ「紹介:XXX」付与"},
-      {id:"f8", lvl:"🟡", lock:"🚧", who:"🧑", label:"terms_draft_v1 検収＆公開（利用規約・プラポリは既存/p/0F02UCmBDSpz流用可）", sub:"f9のLINE認証チャネル作成前提条件・本フローではf4後の任意項目"},
+      {id:"f8", lvl:"🟡", lock:"🚧", who:"🧑", label:"terms_draft_v1 検収＆公開（利用規約・プラポリは既存/p/0F02UCmBDSpz流用可）", sub:"<b>→ あと：</b>Mits が _wip/terms_draft_v1_20260612.md を目視確認→OK ならその内容を UTAGE 利用規約ページに作成（または既存特商法ページに統合）→公開URL を入口LP のフッタに反映。AI-Mits 単独運用なら現状の流用で実は不要・f9 LINE認証で必須化"},
       {id:"f9", lvl:"🟢", lock:"", who:"🤖", label:"2_ログイン（Nfg3iO7vokkY/ECJsS6KIeBvp）完成 navy デザイン・自動振り分け", sub:"本日2026-06-14・localStorage優先＋メアドhash復元・自動遷移実機OK"},
       {id:"f15",lvl:"🟢", lock:"", who:"🤖", label:"Dify アプリ2件を顧客向け統一名「AI-Mits｜経営の壁打ち相手」にrename", sub:"本日2026-06-14・2.1(14d6df13)とv3(1a8d8b9c)両方・AB盲検維持・💬icon"},
-      {id:"f16",lvl:"🟡", lock:"", who:"🤝", label:"【強化】2_ログインに UTAGE 会員 login iframe 埋込＋認証成功後hash判定", sub:"X-Frame-Options無し→embed可能。同一origin。session情報からメアド取得→hash→arm。現状の自走機能で代替可能のため任意強化"},
+      {id:"f16",lvl:"🟡", lock:"", who:"🤝", label:"【強化】2_ログインに UTAGE 会員 login iframe 埋込＋認証成功後hash判定", sub:"<b>→ あと：</b>Mits Go なら実装：①2_ログインに &lt;iframe src=members/.../login&gt; 埋込（X-Frame-Options 無し確認済）②iframe.contentDocument にアクセスし会員メアド取得③hash計算→ABページ遷移。1〜2時間。現状の自走機能で代替済なので優先度低（なりすまし耐性を上げたい時のみ）"},
       {id:"f10",lvl:"🔴", lock:"", who:"🤖", label:"リマインダ実装（base_date=Mits宣言期限基準・LINE複数本）", sub:"message_create で base_date 逆算配信スキーマ確定済"},
       {id:"f11",lvl:"🟢", lock:"", who:"🤝", label:"通しテスト：/p/V3A9LG00dL2S→メアド登録→ABチャット→サンクス→LINE登録→PDF→次回URL", sub:"f4配信中切替後に実施可能"},
       {id:"f12",lvl:"🔴", lock:"🚧", who:"🤖", label:"【AI-Mits稼働後】The Innovation総合案内（GbmmFJvKklbb）の『AI-MITSに相談する』ボタンを v2 → AB入口に差替", sub:"現状：本番v2 (e472bc1f) が動いている＝復元後のsonnet-4-6基線。AB勝者確定後にAB入口（/p/V3A9LG00dL2S）か直接ABステップに向ける"},
       {id:"f13",lvl:"🔴", lock:"🚧", who:"🤖", label:"【AI-Mits稼働後】F0-01サンクス（vsfgKQYdXCcn / 3J7CNvpkChFU）の『AI-Mits』ボタンを SKOOL → AB入口に差替", sub:"現状：SKOOLにジャンプ。AI-Mits稼働後はAB入口（メアド登録済ユーザーは2回目以降の入口/p/Nfg3iO7vokkY）に向ける"},
-      {id:"f14",lvl:"🟡", lock:"🚧", who:"🤝", label:"The Innovation 会員ページ（Mits新規作成）に『AI-Mits 利用にジャンプ』ボタン追加", sub:"page URL/ID を Mits から受領→utage-lesson-html-uploader skill 経由でボタン挿入。リンク先=/p/V3A9LG00dL2S（新規）or /p/Nfg3iO7vokkY（2回目以降）"}
+      {id:"f14",lvl:"🟡", lock:"🚧", who:"🤝", label:"The Innovation 会員ページ（Mits新規作成）に『AI-Mits 利用にジャンプ』ボタン追加", sub:"<b>→ あと：</b>①Mits から該当の lesson URL（/members/mxjeSnXmJDbO/course/.../lesson/...）を一行で受領 ②AI が utage-lesson-html-uploader 経由で navy デザインの『AI-Mits 利用にジャンプ →』ボタンを埋め込み（リンク先=/p/Nfg3iO7vokkY＝2回目以降ページに統一・localStorage か メアド hash で自動該当 arm へ）"}
     ]
   },
   {
