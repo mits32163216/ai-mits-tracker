@@ -206,7 +206,13 @@ const PHASES = [
       {id:"f13",lvl:"🔴", lock:"🚧", who:"🤖", label:"【AI-Mits稼働後】F0-01サンクス（vsfgKQYdXCcn / 3J7CNvpkChFU）の『AI-Mits』ボタンを SKOOL → AB入口に差替", sub:"現状：SKOOLにジャンプ。AI-Mits稼働後はAB入口（メアド登録済ユーザーは2回目以降の入口/p/Nfg3iO7vokkY）に向ける"},
       {id:"f14",lvl:"🟡", lock:"🚧", who:"🤝", label:"The Innovation 会員ページ（Mits新規作成）に『AI-Mits 利用にジャンプ』ボタン追加", sub:"<b>→ あと：</b>①Mits から該当の lesson URL（/members/mxjeSnXmJDbO/course/.../lesson/...）を一行で受領 ②AI が utage-lesson-html-uploader 経由で navy デザインの『AI-Mits 利用にジャンプ →』ボタンを埋め込み（リンク先=/p/Nfg3iO7vokkY＝2回目以降ページに統一・localStorage か メアド hash で自動該当 arm へ）"},
       {id:"f17",lvl:"🔴", lock:"🚧", who:"🤝", label:"【AI-Mits完成後】既存購入者・既存F0-01以外会員に AI-Mits利用ボタンコース を一括付与（Mits管理画面）", sub:"<b>→ あと：</b>AI-Mits 完成後に Mits が UTAGE 管理画面で対象 reader（F0-04/F1-01〜F1-08 等の会員）に対し『AI-Mits利用ボタン』コース or 単独バンドル rbtrX2PGuBaC を一括付与。新規購入/無料登録者は別途 f18 で対応"},
-      {id:"f18",lvl:"🔴", lock:"", who:"🤖", label:"【AI-Mits完成後】F0-04 + F1-01〜F1-08 の各バンドルに『AI-Mits利用ボタン』コース(248579)を attach（F0-01 と同じ構成）", sub:"<b>→ あと：</b>AI-Mits 完成後に utage-bundle-setup スキル Phase B（fetch 直POST方式）で10件のバンドルに横展開 attach（1件3秒・合計1分以内）。これで以後 The Library のどのバンドルで登録した人も AI-Mits 利用ボタンが見える状態に"}
+      {id:"f18",lvl:"🔴", lock:"", who:"🤖", label:"【AI-Mits完成後】F0-04 + F1-01〜F1-08 の各バンドルに『AI-Mits利用ボタン』コース(248579)を attach（F0-01 と同じ構成）", sub:"<b>→ あと：</b>AI-Mits 完成後に utage-bundle-setup スキル Phase B（fetch 直POST方式）で10件のバンドルに横展開 attach（1件3秒・合計1分以内）。これで以後 The Library のどのバンドルで登録した人も AI-Mits 利用ボタンが見える状態に"},
+      {id:"f19",lvl:"🔴", lock:"🚧", who:"🤖", label:"Notion DB『AI-Mits インシデント』新規作成", sub:"<b>→ あと：</b>スキーマ：インシデント番号(INC-XXX連番)／メアドhash／種別タイトル／ステータス(オープン/進行中/クローズ)／Branch(A〜L)／開始日／最終更新日／conv_id履歴(JSON)／前回の宿題／最新要約。ナレッジ蓄積の最小単位＝1インシデント"},
+      {id:"f20",lvl:"🔴", lock:"🚧", who:"🤖", label:"Dify『AI-Mits インシデント振り返り』アプリ新規作成", sub:"<b>→ あと：</b>簡潔・深掘り禁止 chatflow。冒頭発話=該当インシデントの前回宿題を読み上げ『どうでしたか、やりましたか』。3〜5往復で進捗を聞き出して終了。振り返り完了ボタンで Notion DB に要約保存"},
+      {id:"f21",lvl:"🔴", lock:"🚧", who:"🤖", label:"2回目以降ページ刷新：メアド認証→進行中インシデント一覧→選択or新規（ITサポートのチケット型）", sub:"<b>→ あと：</b>現在の『メアドhash→AB チャット直行』を廃止。代わりに進行中インシデントを Notion DB から listing→『INC-007 ペルソナの仮決め（先週）』形式で一覧→クリック=振り返り or 『+新しいご相談』=新規コンサル直行"},
+      {id:"f22",lvl:"🔴", lock:"🚧", who:"🤖", label:"新コンサル起動時に振り返り要約をDify system prompt 注入", sub:"<b>→ あと：</b>振り返り完了→URL クエリで incident_id + summary_id を新コンサル(2.1/v3)に渡す→Dify chatflow で Notion DB から要約fetch→system prompt 注入で文脈接続『先ほどの振り返りを踏まえると…』"},
+      {id:"f23",lvl:"🔴", lock:"🚧", who:"🤖", label:"インシデントクローズ判定機構", sub:"<b>→ あと：</b>コンサル完了時に AI 自動 or ユーザー手動でステータス更新（オープン→進行中→クローズ）。クローズ済インシデントは2回目以降の一覧に出さない（参照履歴に残す）"},
+      {id:"f24",lvl:"🔴", lock:"🚧", who:"🤖", label:"AB チャットに15分セッションタイマー＋残3分で『最後の…です』告知＋0分で自動終了", sub:"<b>→ あと：</b>セッション開始時刻を localStorage 保存→ヘッダーに残り時間カウントダウン表示→残3分時点で AI 応答に『最後の質問にしましょう』プレフィックス挿入→0分で自動セッション終了→振り返り/レポート生成画面へ自動遷移。Mitsコンサル流儀『時間で切る』の実装"}
     ]
   },
   {
