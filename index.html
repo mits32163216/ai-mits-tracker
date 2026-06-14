@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI-MITS 実装トラッカー v2（2026-06-14）</title>
+<style>
+:root{
+  --bg:#f7f8fa; --card:#ffffff; --border:#e3e6ec;
+  --ura:#fff7ed;   /* 裏=ベージュ */
+  --ura-edge:#f59e0b;
+  --omote:#eef5ff; /* 表=ライトブルー */
+  --omote-edge:#2563eb;
+  --text:#1a1a1a; --mute:#6b7280;
+  --done:#9ca3af; --hi:#0a7;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;padding:24px 16px 80px;
+  font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",sans-serif;
+  background:var(--bg);color:var(--text);line-height:1.55;
+}
+.wrap{max-width:1280px;margin:0 auto}
+h1{margin:0 0 4px;font-size:22px}
+.sub{color:var(--mute);font-size:13px;margin-bottom:18px}
+.legend{
+  display:flex;flex-wrap:wrap;gap:8px 14px;
+  font-size:12px;color:var(--mute);
+  background:var(--card);border:1px solid var(--border);
+  border-radius:10px;padding:10px 14px;margin-bottom:18px;
+}
+.legend b{color:var(--text)}
+.summary{
+  display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:18px;
+}
+.kpi{
+  background:var(--card);border:1px solid var(--border);border-radius:12px;
+  padding:12px 16px;
+}
+.kpi h3{margin:0 0 6px;font-size:12px;color:var(--mute);font-weight:600}
+.bar{height:8px;background:#eef0f4;border-radius:6px;overflow:hidden;margin-top:6px}
+.bar > i{display:block;height:100%;background:var(--hi);width:0%;transition:width .2s}
+.phase{
+  background:var(--card);border:1px solid var(--border);border-radius:14px;
+  padding:14px 14px 4px;margin:14px 0;
+}
+.phase > .head{
+  display:flex;align-items:baseline;justify-content:space-between;margin-bottom:8px;
+}
+.phase > .head h2{margin:0;font-size:16px}
+.phase > .head .meta{font-size:12px;color:var(--mute)}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:780px){.cols{grid-template-columns:1fr}.summary{grid-template-columns:1fr}}
+.col{
+  border-radius:10px;padding:10px 12px 6px;border:1px solid var(--border);
+}
+.col.ura{background:var(--ura);border-left:4px solid var(--ura-edge)}
+.col.omote{background:var(--omote);border-left:4px solid var(--omote-edge)}
+.col h4{margin:0 0 8px;font-size:13px;letter-spacing:.04em}
+.col h4 .tag{
+  display:inline-block;padding:1px 8px;border-radius:10px;background:#fff;border:1px solid var(--border);
+  font-size:11px;color:var(--mute);margin-left:6px;
+}
+.item{
+  display:flex;align-items:flex-start;gap:8px;
+  padding:6px 6px;border-radius:8px;
+}
+.item:hover{background:rgba(0,0,0,.03)}
+.item input[type=checkbox]{margin-top:4px;width:16px;height:16px;cursor:pointer;flex-shrink:0}
+.item .meta{font-size:11px;color:var(--mute);margin-left:6px}
+.item.done .lbl{text-decoration:line-through;color:var(--done)}
+.lbl{font-size:14px}
+.lbl small{display:block;color:var(--mute);font-size:11px;margin-top:2px}
+.lvl{display:inline-block;font-size:11px;margin-right:4px}
+.actions{
+  position:sticky;bottom:0;background:linear-gradient(to top, var(--bg) 75%, transparent);
+  padding:10px 0 0;margin-top:10px;display:flex;gap:8px;justify-content:flex-end;
+}
+.btn{
+  background:#fff;border:1px solid var(--border);border-radius:8px;
+  padding:6px 12px;font-size:12px;cursor:pointer;color:var(--text);
+}
+.btn:hover{background:#f1f3f5}
+.warn{background:#fff7ed;border:1px solid #f59e0b;border-radius:10px;padding:10px 14px;margin-bottom:14px;font-size:13px}
+.warn b{color:#b45309}
+.notes{font-size:12px;color:var(--mute);padding:8px 12px 6px}
+.footer{margin-top:30px;color:var(--mute);font-size:11px;text-align:center}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>📋 AI-MITS 実装トラッカー v2</h1>
+  <div class="sub">最終更新：2026-06-14 ／ 旧版（2026-05-09）からの全面リライト。チェック状態はブラウザに保存されます。</div>
+
+  <div class="legend">
+    <span><b>進捗</b>：🟢 着手済　🟡 着手中　🔴 未着手</span>
+    <span><b>重要度</b>：🚧 ブロッカー　🔒 不可逆</span>
+    <span><b>担当</b>：🧑 Mits　🤖 AI　🤝 共同</span>
+    <span><b>裏</b>＝バックヤード（データ・エンジン・整備）</span>
+    <span><b>表</b>＝インターフェース（顧客接点・体験）</span>
+  </div>
+
+  <div class="summary">
+    <div class="kpi">
+      <h3>裏（バックヤード）進捗</h3>
+      <div id="kpiUra">0 / 0 完了</div>
+      <div class="bar"><i id="barUra"></i></div>
+    </div>
+    <div class="kpi">
+      <h3>表（インターフェース）進捗</h3>
+      <div id="kpiOmote">0 / 0 完了</div>
+      <div class="bar"><i id="barOmote"></i></div>
+    </div>
+  </div>
+
+  <div class="warn">
+    <b>🚦 現在地（2026-06-14）：</b> 裏は engine + Branch v2.0 付与 + 判定記録DB が概ね完了。
+    表（円環＝チャット→PDF→メアド→メール→Skool誘導→再来訪）に着手していない。
+  </div>
+
+  <div id="root"></div>
+
+  <div class="actions">
+    <button class="btn" onclick="resetAll()">全クリア</button>
+    <button class="btn" onclick="exportState()">状態をJSONで書き出し</button>
+  </div>
+
+  <div class="footer">改訂履歴：v2.0=2026-06-14（裏/表 並列・チェック式）／ v1.0=2026-05-09（旧 Notion 手順書）</div>
+</div>
+
+<script>
+// ===== データ定義 =====
+const PHASES = [
+  {
+    id:"p1", title:"Phase 1｜コーパス・データ整備（裏のみ）",
+    meta:"5ステップパイプライン・Branch付与",
+    ura:[
+      {id:"1-1a", lvl:"🟢", lock:"", who:"🤖", label:"MK-1〜97 を新DB v2 にテンプレ5セクション格納（移管済）", sub:"5a32a234..."},
+      {id:"1-1b", lvl:"🟡", lock:"", who:"🤝", label:"職人技抽出（切り分けシーケンス / 判断基準）の Mits確認サイクル", sub:"必要に応じて随時"},
+      {id:"1-1c", lvl:"🟢", lock:"", who:"🤖", label:"新規MK拡充（Nottaから取り込み）", sub:"継続パイプ"},
+      {id:"1-2",  lvl:"🟢", lock:"", who:"🤖", label:"発話者ラベル付け（Notta自動）", sub:""},
+      {id:"4-3", lvl:"🟢", lock:"", who:"🤖", label:"Branch v2.0 全97件 multi_select 付与（Primary + Secondary）", sub:"本日完了 / 2026-06-14"},
+      {id:"4-4",  lvl:"🔴", lock:"", who:"🧑", label:"K（コミュニティ）3件のみ → Mits確認で増やすか判断", sub:""},
+      {id:"7",    lvl:"🟡", lock:"", who:"🤖", label:"判定記録DB v2 のグレー（Mits判定希望）4件処理", sub:"MK-82/85 Step含む"},
+      {id:"8",    lvl:"🔴", lock:"🚧", who:"🤝", label:"動画在庫DB の Branch v2.0 タグ付け（円環の推薦先）", sub:"Mits手書き+AI素案二段"},
+      {id:"9",    lvl:"🔴", lock:"🚧", who:"🤝", label:"Branch×教材マッピング表 v2.0 再生成（v1.1を更新）", sub:"動画×UTAGE×Skool 統合"}
+    ],
+    omote:[] // Phase 1 は裏のみ
+  },
+  {
+    id:"p2", title:"Phase 2｜エンジン仕様（裏のみ）",
+    meta:"v2本番 / 2.1 / v3 ＋ AB測定",
+    ura:[
+      {id:"e1", lvl:"🟢", lock:"🔒", who:"🤖", label:"v2本番（e472bc1f）= sonnet-4-6 / temp 0.4 / 0.7 / 不可侵に復元", sub:"2026-04-16 状態"},
+      {id:"e2", lvl:"🟢", lock:"", who:"🤖", label:"2.1（14d6df13・旧v2-0603）= opus-4-6 / temp 0.4・0.7", sub:"AB「A」候補"},
+      {id:"e3", lvl:"🟢", lock:"", who:"🤖", label:"v3（1a8d8b9c）N12 = opus-4-6 / temp 0.4", sub:"AB「B」候補"},
+      {id:"e4", lvl:"🟡", lock:"", who:"🤖", label:"v3 N6_mk_judge（opus-4-8/cp 空）→ opus-4-6/temp 0.1〜0.2 に微調整", sub:"決定性重視"},
+      {id:"e5", lvl:"🟢", lock:"", who:"🤖", label:"AB測定 N1〜N6 で 2.1=10.17 / v3=10.83（v3優勢 +0.66）", sub:"小差・本番ABで大数判定"}
+    ],
+    omote:[]
+  },
+  {
+    id:"p3", title:"Phase 3｜円環構築（★ここで裏/表 並走）",
+    meta:"会話 → PDF → メアド → メール → Skool → 再来訪",
+    ura:[
+      {id:"r1", lvl:"🔴", lock:"🚧", who:"🤖", label:"Report Generator Dify アプリ新規作成（独立・エンジン非依存）", sub:"会話履歴受領→Report JSON 出力"},
+      {id:"r2", lvl:"🔴", lock:"", who:"🤖", label:"N1 会話まとめLLM（opus-4-6・要約500字）", sub:""},
+      {id:"r3", lvl:"🔴", lock:"", who:"🤖", label:"N2 Branch分類LLM（A〜L・MK DB v2 Knowledge Retrieval併用）", sub:""},
+      {id:"r4", lvl:"🔴", lock:"🔒", who:"🤖", label:"N3 Report JSON 組成（report_template変数に1:1）", sub:"summary/branches/resources/next_action/report_id"},
+      {id:"r5", lvl:"🟡", lock:"", who:"🤖", label:"report_template_v1_20260603.html を v2 にリライト（変数差込確認）", sub:""},
+      {id:"r6", lvl:"🔴", lock:"", who:"🤖", label:"Report Generator API key 発行 → UTAGE webhook から叩ける状態", sub:""},
+      {id:"r7", lvl:"🔴", lock:"", who:"🤖", label:"UTAGE → Dify webhook 実装（メアド入力時に Report JSON 取得）", sub:""}
+    ],
+    omote:[
+      {id:"f1", lvl:"🔴", lock:"🚧", who:"🤖", label:"AB 入口 LP（チャット振り分け）と入口開幕メッセージ", sub:"既存タスク#1〜3 で文章ドラフト済"},
+      {id:"f2", lvl:"🔴", lock:"", who:"🤖", label:"チャット末尾「PDFを受け取る」ボタン or 完了動線", sub:"udify.app のチャット UI 上で導線設計"},
+      {id:"f3", lvl:"🔴", lock:"🚧", who:"🤝", label:"UTAGE オプトインフォーム（メアド取得）+ サンクスページ", sub:"既存F0-02流用 or 新規"},
+      {id:"f4", lvl:"🔴", lock:"", who:"🤖", label:"UTAGE HTML メールテンプレート（Branch説明+推薦教材リンク）", sub:"ブロック要素で構築"},
+      {id:"f5", lvl:"🔴", lock:"", who:"🤖", label:"PDF送付方法決定（メール添付 or ダウンロードURL）", sub:"Cloudflare休止下なので UTAGE 直配信"},
+      {id:"f6", lvl:"🔴", lock:"", who:"🤖", label:"Skool 5コース / UTAGE The Library 8コースのリンク埋め込み", sub:"Branch ごとに別出し"},
+      {id:"f7", lvl:"🔴", lock:"", who:"🤝", label:"UTAGE タグ「AI-MITS_利用済」付与・再訪識別", sub:"再来訪トリガー"},
+      {id:"f8", lvl:"🔴", lock:"", who:"🧑", label:"同意事項・利用規約・プライバシーポリシー検収＆公開（既存ドラフト）", sub:"既存タスク#3 で雛形済"}
+    ]
+  },
+  {
+    id:"p4", title:"Phase 4｜循環更新（裏・育て続ける）",
+    meta:"Dify ログ→Mitsフィルター→新MK 追加",
+    ura:[
+      {id:"l1", lvl:"🟢", lock:"", who:"🤖", label:"AI-MITS Talk D1ログ取得 saveTurn 実装済", sub:""},
+      {id:"l2", lvl:"🔴", lock:"", who:"🤖", label:"Dify v1+v3 ログ API取得（GET /v1/messages）の継続バッチ", sub:""},
+      {id:"l3", lvl:"🔴", lock:"🚧", who:"🧑", label:"良質セッション Mitsフィルター（採否判断）", sub:"自動化禁止領域"},
+      {id:"l4", lvl:"🔴", lock:"", who:"🤖", label:"採用分を新MKに整形→Notta経由でテンプレ5セクション化", sub:""},
+      {id:"l5", lvl:"🔴", lock:"", who:"🤖", label:"差分Branch分類 → 月次レビューで新Branch判断（K拡張等）", sub:""}
+    ],
+    omote:[]
+  }
+];
+
+// ===== レンダリング =====
+const KEY = "aimits_tracker_v2_20260614";
+const state = JSON.parse(localStorage.getItem(KEY) || "{}");
+
+function render(){
+  const root = document.getElementById("root");
+  root.innerHTML = "";
+  PHASES.forEach(ph=>{
+    const div = document.createElement("div");
+    div.className = "phase";
+    let html = `<div class="head"><h2>${ph.title}</h2><div class="meta">${ph.meta}</div></div>`;
+    if(ph.omote.length){
+      html += `<div class="cols">
+        <div class="col ura"><h4>🔧 裏（バックヤード）<span class="tag">${ph.ura.length}件</span></h4>${renderItems(ph.ura)}</div>
+        <div class="col omote"><h4>🎨 表（インターフェース）<span class="tag">${ph.omote.length}件</span></h4>${renderItems(ph.omote)}</div>
+      </div>`;
+    } else {
+      html += `<div class="cols" style="grid-template-columns:1fr">
+        <div class="col ura"><h4>🔧 裏（バックヤード）<span class="tag">${ph.ura.length}件</span></h4>${renderItems(ph.ura)}</div>
+      </div>`;
+    }
+    div.innerHTML = html;
+    root.appendChild(div);
+  });
+  bindAll();
+  updateKPI();
+}
+function renderItems(items){
+  return items.map(it=>{
+    const checked = state[it.id] ? "checked" : "";
+    const done = state[it.id] ? "done" : "";
+    return `<label class="item ${done}" data-id="${it.id}">
+      <input type="checkbox" ${checked}>
+      <div class="lbl">
+        <span class="lvl">${it.lvl}${it.lock?" "+it.lock:""}</span>
+        <span>${it.who} ${it.label}</span>
+        ${it.sub?`<small>${it.sub}</small>`:""}
+        <span class="meta">[${it.id}]</span>
+      </div>
+    </label>`;
+  }).join("");
+}
+function bindAll(){
+  document.querySelectorAll(".item input[type=checkbox]").forEach(cb=>{
+    cb.addEventListener("change",e=>{
+      const lab = e.target.closest(".item");
+      const id = lab.dataset.id;
+      if(e.target.checked){ state[id]=true; lab.classList.add("done"); }
+      else { delete state[id]; lab.classList.remove("done"); }
+      localStorage.setItem(KEY, JSON.stringify(state));
+      updateKPI();
+    });
+  });
+}
+function updateKPI(){
+  let uraT=0, uraD=0, omT=0, omD=0;
+  PHASES.forEach(ph=>{
+    ph.ura.forEach(i=>{uraT++; if(state[i.id]) uraD++;});
+    ph.omote.forEach(i=>{omT++; if(state[i.id]) omD++;});
+  });
+  document.getElementById("kpiUra").textContent = `${uraD} / ${uraT} 完了`;
+  document.getElementById("kpiOmote").textContent = `${omD} / ${omT} 完了`;
+  document.getElementById("barUra").style.width = uraT?((uraD/uraT)*100).toFixed(0)+"%":"0%";
+  document.getElementById("barOmote").style.width = omT?((omD/omT)*100).toFixed(0)+"%":"0%";
+}
+function resetAll(){
+  if(!confirm("すべてのチェックを外しますか？")) return;
+  for(const k in state) delete state[k];
+  localStorage.setItem(KEY, JSON.stringify(state));
+  render();
+}
+function exportState(){
+  const blob = new Blob([JSON.stringify(state,null,2)],{type:"application/json"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "aimits_tracker_state_20260614.json";
+  a.click();
+}
+render();
+</script>
+</body>
+</html>
