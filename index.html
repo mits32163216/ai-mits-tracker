@@ -172,16 +172,17 @@ const PHASES = [
       {id:"r7", lvl:"🔴", lock:"", who:"🤖", label:"UTAGE → Dify webhook 実装（メアド入力時に Report JSON 取得）", sub:""}
     ],
     omote:[
-      {id:"f1", lvl:"🟢", lock:"🔒", who:"🤖", label:"既存UTAGE 0_入口（V3A9LG00dL2S/i50uCEKjqC9Q）構築済", sub:"案内＋同意4点＋LINE登録ボタン＋法的フッター（2026-06-12）"},
-      {id:"f2", lvl:"🟡", lock:"", who:"🧑", label:"あいさつLINE（SKGD9kYT92CI）draft→配信中（Mits 1クリック）", sub:"API safety_restriction で AI不可・Mits専権"},
-      {id:"f3", lvl:"🟢", lock:"🔒", who:"🤖", label:"UTAGEネイティブAB（ABステップXN7acYfA4sq5）構築済", sub:"page A LMfcyJkjkzAh=2.1 iframe（本日差替）／ page B hUMsNrqy5QBh=v3 iframe"},
-      {id:"f4", lvl:"🟢", lock:"", who:"🤖", label:"AB page A iframe src を本番v2→2.1（9f6g2gdTo8eAEthO）差替", sub:"本日 2026-06-14 実施・本番v2不可侵復元と整合"},
-      {id:"f5", lvl:"🟡", lock:"", who:"🤖", label:"既存サンクス（CeXloUqVEqNm/8rZR2qCGXNjJ）レポート枠/PDFボタン/「次回はここから」JS", sub:"?arm=A/B → ページ直URL固定済（実機検証済）"},
-      {id:"f6", lvl:"🔴", lock:"", who:"🤖", label:"既存サンクスに Branch×教材推薦埋込（コースBkTnGFo0Lpsa経由）", sub:"Branch v2.0 全97件付与完了→ いつでも実装可"},
-      {id:"f7", lvl:"🔴", lock:"🚧", who:"🧑", label:"LINEログイン認証チャネル作成（2_ログイン step Nfg3iO7vokkY）", sub:"利用規約/プラポリ公開URLが前提条件・Mits専権"},
-      {id:"f8", lvl:"🟡", lock:"🚧", who:"🧑", label:"terms_draft_v1 検収＆公開（利用規約・プラポリは既存/p/0F02UCmBDSpz流用可）", sub:"f7のLINEチャネル作成前提条件"},
-      {id:"f9", lvl:"🔴", lock:"", who:"🤖", label:"リマインダ実装（base_date=完了予定日基準・LINE4本+メール4本）", sub:"message_create で base_date 逆算配信スキーマ確定済"},
-      {id:"f10",lvl:"🟢", lock:"", who:"🤝", label:"通しテスト：/p/V3A9LG00dL2S→LINE登録→チャット→サンクス→専用URL固定確認", sub:"AB分離完成後の最終検証"}
+      {id:"f1", lvl:"🟢", lock:"🔒", who:"🤖", label:"0_入口 メアドゲート化完成（i50uCEKjqC9Q）", sub:"本日2026-06-14・UTAGE form要素・scenario_id=XU7Gfd7XoiCQ・redirect→ABステップ"},
+      {id:"f2", lvl:"🟢", lock:"🔒", who:"🤖", label:"ABステップ UTAGEネイティブAB（XN7acYfA4sq5）構築済", sub:"page A=2.1（9f6g2g..）／ page B=v3（9FU8pR..）／自動50:50振り分け"},
+      {id:"f3", lvl:"🟢", lock:"", who:"🤖", label:"3_サンクス LINE登録CTA追加完成（8rZR2qCGXNjJ）", sub:"本日2026-06-14・「PDFレポートをLINEで受け取る」緑ボタン・XU7Gfd7XoiCQへ"},
+      {id:"f4", lvl:"🟡", lock:"🚧", who:"🧑", label:"あいさつLINE（SKGD9kYT92CI・PDF配信版）draft→配信中（Mits 1クリック）", sub:"API safety_restriction で AI不可・Mits専権／URL: utage-system.com/account/vNItAbojIgEK/scenario/XU7Gfd7XoiCQ/step"},
+      {id:"f5", lvl:"🔴", lock:"🚧", who:"🤖", label:"PDFレポート自動生成→LINE配信パイプ（裏 Report Generator必須）", sub:"Difyログ取得→Branch分類→Report JSON→PDF→LINE添付 or URL"},
+      {id:"f6", lvl:"🔴", lock:"", who:"🤖", label:"Branch×教材推薦の動的差替（A〜L全12軸）", sub:"Branch v2.0 全97件付与完了→ サンクス element 10 を動的化"},
+      {id:"f7", lvl:"🔴", lock:"", who:"🤖", label:"紹介コード実装（Cloudflare休止→UTAGEタグ運用に切替）", sub:"紹介者固有URL→UTAGEタグ「紹介:XXX」付与"},
+      {id:"f8", lvl:"🟡", lock:"🚧", who:"🧑", label:"terms_draft_v1 検収＆公開（利用規約・プラポリは既存/p/0F02UCmBDSpz流用可）", sub:"f9のLINE認証チャネル作成前提条件・本フローではf4後の任意項目"},
+      {id:"f9", lvl:"🔴", lock:"", who:"🧑", label:"LINEログイン認証チャネル作成（2_ログイン step Nfg3iO7vokkY・再訪識別用）", sub:"任意・専用URL方式でも代替可"},
+      {id:"f10",lvl:"🔴", lock:"", who:"🤖", label:"リマインダ実装（base_date=Mits宣言期限基準・LINE複数本）", sub:"message_create で base_date 逆算配信スキーマ確定済"},
+      {id:"f11",lvl:"🟢", lock:"", who:"🤝", label:"通しテスト：/p/V3A9LG00dL2S→メアド登録→ABチャット→サンクス→LINE登録→PDF→次回URL", sub:"f4配信中切替後に実施可能"}
     ]
   },
   {
