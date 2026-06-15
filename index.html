@@ -280,10 +280,31 @@ function lvlClass(lvl){
   if(lvl==='🔵') return 'lvl-future';
   return '';
 }
+function naturalIdCompare(a, b){
+  // id を「英字接頭+数字+接尾」に分解して比較。f3→f3b→f4 / 1-1a→1-1b→1-1c の順を実現
+  const re = /^([a-z]*?)(\d+(?:-\d+)?)(.*)$/i;
+  const ma = String(a).match(re), mb = String(b).match(re);
+  if(ma && mb){
+    if(ma[1] !== mb[1]) return ma[1].localeCompare(mb[1]);
+    const ka = ma[2].split('-').map(n=>parseInt(n,10));
+    const kb = mb[2].split('-').map(n=>parseInt(n,10));
+    for(let i=0;i<Math.max(ka.length,kb.length);i++){
+      const va = ka[i] ?? 0, vb = kb[i] ?? 0;
+      if(va !== vb) return va - vb;
+    }
+    return ma[3].localeCompare(mb[3]);
+  }
+  return String(a).localeCompare(String(b));
+}
 function renderItems(items){
-  // Sort: 🔴未着手 → 🟡進行中 → 🟢完了 の順（やるべきものが上）
+  // Sort: 🔴緊急 → 🟡短期 → 🟢完了 → 🟣完成宣言時 → 🔵中長期 の色順
+  // 同色内は id 番号順（時間相関：上が先・下が後）
   const order = {'🔴':0,'🟡':1,'🟢':2,'🟣':3,'🔵':4};
-  const sorted = items.slice().sort((a,b)=>(order[a.lvl]??9)-(order[b.lvl]??9));
+  const sorted = items.slice().sort((a,b)=>{
+    const co = (order[a.lvl]??9)-(order[b.lvl]??9);
+    if(co !== 0) return co;
+    return naturalIdCompare(a.id, b.id);
+  });
   return sorted.map(it=>{
     const checked = state[it.id] ? "checked" : "";
     const done = state[it.id] ? "done" : "";
