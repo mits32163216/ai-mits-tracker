@@ -183,7 +183,7 @@ const PHASES = [
       {id:"r2", lvl:"🔴", lock:"", who:"🤖", label:"N1 会話まとめLLM（opus-4-6・要約500字）", sub:""},
       {id:"r3", lvl:"🔴", lock:"", who:"🤖", label:"N2 Branch分類LLM（A〜L・MK DB v2 Knowledge Retrieval併用）", sub:""},
       {id:"r4", lvl:"🔴", lock:"🔒", who:"🤖", label:"N3 Report JSON 組成（report_template変数に1:1）", sub:"summary/branches/resources/next_action/report_id"},
-      {id:"r5", lvl:"🟡", lock:"", who:"🤖", label:"report_template_v1_20260603.html を v2 にリライト（変数差込確認）", sub:"<b>→ あと：</b>Report Generator が出力する Report JSON 構造（summary/branch/resources）に合わせて変数 placeholder を {{summary}}・{{branch.primary}}・{{resources[]}} 等に書き換え→サンプルJSONで差込テスト→PDFレンダリング設計"},
+      {id:"r5", lvl:"🟢", lock:"", who:"🤖", label:"report_template_v2_20260615.html 作成済（v0.4 JSON対応・A4印刷+screen両対応）", sub:"2026-06-15完了。Report Generator v0.4 出力構造（summary Markdown/branch{primary,secondary,reason}/recommendation[]/needs_mits_branches[]）に完全対応。①軽量Markdown→HTML変換ヘルパ②BRANCH_NAMES 12軸表（Notion DB と同期）③Branch badge（primary/secondary/needs-mits 3色）④推薦カード自動ループ⑤summary内「決まったこと」セクション自動抽出→「今日から動けること」へ⑥3経路 inject（inline script-json / window.REPORT_DATA / postMessage）⑦@page A4印刷+screen下プレビュー両対応。<b>場所：</b>/Users/nishidamitsuhiro/My Drive/claude-nishida/経営プロジェクト/02_AI-MITS/_wip/report_template_v2_20260615.html"},
       {id:"r6", lvl:"🔴", lock:"", who:"🤖", label:"Report Generator API key 発行 → UTAGE webhook から叩ける状態", sub:""},
       {id:"r7", lvl:"🔴", lock:"", who:"🤖", label:"UTAGE → Dify webhook 実装（メアド入力時に Report JSON 取得）", sub:""}
     ],
