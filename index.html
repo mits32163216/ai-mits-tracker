@@ -108,7 +108,7 @@ h1{margin:0 0 4px;font-size:22px}
   <div class="sub">最終更新：2026-06-14 ／ 旧版（2026-05-09）からの全面リライト。チェック状態はブラウザに保存されます。</div>
 
   <div class="legend">
-    <span><b>進捗</b>：🟢 着手済　🟡 着手中　🔴 未着手</span>
+    <span><b>進捗</b>：🟢 完了　🟡 着手中・補強系　🔴 開通までに不可逆・最優先（未着手）</span>
     <span><b>重要度</b>：🚧 ブロッカー　🔒 不可逆</span>
     <span><b>担当</b>：🧑 Mits　🤖 AI　🤝 共同</span>
     <span><b>裏</b>＝バックヤード（データ・エンジン・整備）</span>
@@ -131,7 +131,7 @@ h1{margin:0 0 4px;font-size:22px}
   </div>
 
   <div class="warn" id="curBanner">
-    <b>🚦 現在地：</b> 各Phase内アイテムは <b>🟢=完了（薄字＋打消し）／🟡=進行中（黄）／🔴=未着手（赤）</b> で自動表示。各カードの上部に状態件数、ソートは未着手→進行中→完了の順。
+    <b>🚦 現在地：</b> 各Phase内アイテムは <b>🟢=完了 ／ 🟡=着手中・補強系 ／ 🔴=開通までに不可逆・最優先</b> で自動表示。各カードの上部に状態件数、ソートは未着手→進行中→完了の順。
   </div>
 
   <div id="root"></div>
@@ -156,10 +156,10 @@ const PHASES = [
       {id:"1-1c", lvl:"🟢", lock:"", who:"🤖", label:"新規MK拡充（Nottaから取り込み）", sub:"継続パイプ"},
       {id:"1-2",  lvl:"🟢", lock:"", who:"🤖", label:"発話者ラベル付け（Notta自動）", sub:""},
       {id:"4-3", lvl:"🟢", lock:"", who:"🤖", label:"Branch v2.0 全97件 multi_select 付与（Primary + Secondary）", sub:"本日完了 / 2026-06-14"},
-      {id:"4-4",  lvl:"🔴", lock:"", who:"🧑", label:"K（コミュニティ）3件のみ → Mits確認で増やすか判断", sub:""},
+      {id:"4-4",  lvl:"🟡", lock:"", who:"🧑", label:"K（コミュニティ）3件のみ → Mits確認で増やすか判断", sub:""},
       {id:"7",    lvl:"🟡", lock:"", who:"🤖", label:"判定記録DB v2 のグレー（Mits判定希望）4件処理", sub:"<b>→ あと：</b>MK-82 Step6（E vs K）／MK-85 Step4（D vs F）等4件をMitsが判定→該当ステップに primary を確定書き込み"},
-      {id:"8",    lvl:"🔴", lock:"🚧", who:"🤝", label:"動画在庫DB の Branch v2.0 タグ付け（円環の推薦先）", sub:"Mits手書き+AI素案二段"},
-      {id:"9",    lvl:"🔴", lock:"🚧", who:"🤝", label:"Branch×教材マッピング表 v2.0 再生成（v1.1を更新）", sub:"動画×UTAGE×Skool 統合"}
+      {id:"8",    lvl:"🟡", lock:"🚧", who:"🤝", label:"動画在庫DB の Branch v2.0 タグ付け（円環の推薦先）", sub:"Mits手書き+AI素案二段"},
+      {id:"9",    lvl:"🟡", lock:"🚧", who:"🤝", label:"Branch×教材マッピング表 v2.0 再生成（v1.1を更新）", sub:"動画×UTAGE×Skool 統合"}
     ],
     omote:[] // Phase 1 は裏のみ
   },
@@ -207,16 +207,16 @@ const PHASES = [
       {id:"f14",lvl:"🟡", lock:"🚧", who:"🤝", label:"The Innovation 会員ページ（Mits新規作成）に『AI-Mits 利用にジャンプ』ボタン追加", sub:"<b>→ あと：</b>①Mits から該当の lesson URL（/members/mxjeSnXmJDbO/course/.../lesson/...）を一行で受領 ②AI が utage-lesson-html-uploader 経由で navy デザインの『AI-Mits 利用にジャンプ →』ボタンを埋め込み（リンク先=/p/Nfg3iO7vokkY＝2回目以降ページに統一・localStorage か メアド hash で自動該当 arm へ）"},
       {id:"f17",lvl:"🔴", lock:"🚧", who:"🤝", label:"【AI-Mits完成後】既存購入者・既存F0-01以外会員に AI-Mits利用ボタンコース を一括付与（Mits管理画面）", sub:"<b>→ あと：</b>AI-Mits 完成後に Mits が UTAGE 管理画面で対象 reader（F0-04/F1-01〜F1-08 等の会員）に対し『AI-Mits利用ボタン』コース or 単独バンドル rbtrX2PGuBaC を一括付与。新規購入/無料登録者は別途 f18 で対応"},
       {id:"f18",lvl:"🔴", lock:"", who:"🤖", label:"【AI-Mits完成後】F0-04 + F1-01〜F1-08 の各バンドルに『AI-Mits利用ボタン』コース(248579)を attach（F0-01 と同じ構成）", sub:"<b>→ あと：</b>AI-Mits 完成後に utage-bundle-setup スキル Phase B（fetch 直POST方式）で10件のバンドルに横展開 attach（1件3秒・合計1分以内）。これで以後 The Library のどのバンドルで登録した人も AI-Mits 利用ボタンが見える状態に"},
-      {id:"f19",lvl:"🔴", lock:"🚧", who:"🤖", label:"Notion DB『AI-Mits インシデント』新規作成", sub:"<b>→ あと：</b>スキーマ：インシデント番号(INC-XXX連番)／メアドhash／種別タイトル／ステータス(オープン/進行中/クローズ)／Branch(A〜L)／開始日／最終更新日／conv_id履歴(JSON)／前回の宿題／最新要約。ナレッジ蓄積の最小単位＝1インシデント"},
-      {id:"f20",lvl:"🔴", lock:"🚧", who:"🤖", label:"Dify『AI-Mits インシデント振り返り』アプリ新規作成", sub:"<b>→ あと：</b>簡潔・深掘り禁止 chatflow。冒頭発話=該当インシデントの前回宿題を読み上げ『どうでしたか、やりましたか』。3〜5往復で進捗を聞き出して終了。振り返り完了ボタンで Notion DB に要約保存"},
-      {id:"f21",lvl:"🔴", lock:"🚧", who:"🤖", label:"2回目以降ページ刷新：メアド認証→進行中インシデント一覧→選択or新規（ITサポートのチケット型）", sub:"<b>→ あと：</b>現在の『メアドhash→AB チャット直行』を廃止。代わりに進行中インシデントを Notion DB から listing→『INC-007 ペルソナの仮決め（先週）』形式で一覧→クリック=振り返り or 『+新しいご相談』=新規コンサル直行"},
-      {id:"f22",lvl:"🔴", lock:"🚧", who:"🤖", label:"新コンサル起動時に振り返り要約をDify system prompt 注入", sub:"<b>→ あと：</b>振り返り完了→URL クエリで incident_id + summary_id を新コンサル(2.1/v3)に渡す→Dify chatflow で Notion DB から要約fetch→system prompt 注入で文脈接続『先ほどの振り返りを踏まえると…』"},
-      {id:"f23",lvl:"🔴", lock:"🚧", who:"🤖", label:"インシデントクローズ判定機構", sub:"<b>→ あと：</b>コンサル完了時に AI 自動 or ユーザー手動でステータス更新（オープン→進行中→クローズ）。クローズ済インシデントは2回目以降の一覧に出さない（参照履歴に残す）"},
-      {id:"f24",lvl:"🔴", lock:"🚧", who:"🤖", label:"AB チャットに15分セッションタイマー＋残3分で『最後の…です』告知＋0分で自動終了", sub:"<b>→ あと：</b>セッション開始時刻を localStorage 保存→ヘッダーに残り時間カウントダウン表示→残3分時点で AI 応答に『最後の質問にしましょう』プレフィックス挿入→0分で自動セッション終了→振り返り/レポート生成画面へ自動遷移。Mitsコンサル流儀『時間で切る』の実装"},
-      {id:"f25",lvl:"🔴", lock:"🚧", who:"🤖", label:"【Phase 1・短期】Dify Sandbox→Pro $59 アップグレード＋UTAGE側UI自前実装", sub:"<b>→ あと：</b>①Dify 課金 Sandbox→Pro $59/月（API無制限化・WebAppロゴ消去込）②UTAGE 側で自前 HTML/JS チャットUI を構築→裏で Dify API 直叩き（既存 v2.1/v3 chatflow 維持）③Mits構想（インシデント一覧・15分タイマー・振り返り・おかえりなさい・f19〜f24全部）をこの自前UI上で実装。バックエンドはDifyのままなのでリスク低・失敗してもDify標準WebAppに戻せる"},
-      {id:"f26",lvl:"🔴", lock:"🚧", who:"🤖", label:"【Phase 2・中期】バックエンド Dify chatflow → Anthropic API 直叩き + Notion DB 置換", sub:"<b>→ あと：</b>Phase 1完了後・AI-Mits利用者推移を見て判断。①Dify v2.1/v3 のノード構造を Anthropic SDK 直叩きで再実装（stream + tool_use 標準機能で代替）②RAG（現Indexing=Economical）を Notion DB 構造化データ system prompt 注入に置換（CORPUS2SKILL目次方式と整合）③並列稼働で実機検証→切替判定"},
-      {id:"f27",lvl:"🔴", lock:"🚧", who:"🤖", label:"【Phase 3・長期】Dify 完全離脱・Pro $59 解約・自前バックエンドのみ", sub:"<b>→ あと：</b>Phase 2 並列稼働検証で自前バックエンド優位確認後・Dify Pro 解約→自前構成のみ。コストはLLM利用料（Anthropic直）+ホスティング$0〜20/月のみ。ベンダーロック解消・主目的（ナレッジ蓄積・Mits手作業フィルター駆動）と完全合致"},
-      {id:"f28",lvl:"🔴", lock:"🚧", who:"🤖", label:"【路線確定】月セッション数 閾値=目標マトリクス（現状40→1万に向けたフェーズ移行ライン）", sub:"<b>→ あと：</b>現状: 月40セッション（実機DB 83件/2ヶ月）。閾値=目標値として運用：①月100=自前UI体験検証（1-3ヶ月）／②月500=PMF確認・月600インシデント蓄積（3-6ヶ月）／③<b>月3,000=Phase2移行ライン・Groq+Anthropicハイブリッド導入</b>（6-12ヶ月・推奨1年目標）／④月10,000=Phase3移行ライン・A100占有$1,080固定費へ切替（損益分岐: Sonnet時13,800/Opus時10,800）／⑤月30,000=社会インフラ規模・H100×2 or 複数A100。閾値到達=技術投資判断のトリガー兼Mitsの目標値"},
+      {id:"f19",lvl:"🟡", lock:"🚧", who:"🤖", label:"Notion DB『AI-Mits インシデント』新規作成", sub:"<b>→ あと：</b>スキーマ：インシデント番号(INC-XXX連番)／メアドhash／種別タイトル／ステータス(オープン/進行中/クローズ)／Branch(A〜L)／開始日／最終更新日／conv_id履歴(JSON)／前回の宿題／最新要約。ナレッジ蓄積の最小単位＝1インシデント"},
+      {id:"f20",lvl:"🟡", lock:"🚧", who:"🤖", label:"Dify『AI-Mits インシデント振り返り』アプリ新規作成", sub:"<b>→ あと：</b>簡潔・深掘り禁止 chatflow。冒頭発話=該当インシデントの前回宿題を読み上げ『どうでしたか、やりましたか』。3〜5往復で進捗を聞き出して終了。振り返り完了ボタンで Notion DB に要約保存"},
+      {id:"f21",lvl:"🟡", lock:"🚧", who:"🤖", label:"2回目以降ページ刷新：メアド認証→進行中インシデント一覧→選択or新規（ITサポートのチケット型）", sub:"<b>→ あと：</b>現在の『メアドhash→AB チャット直行』を廃止。代わりに進行中インシデントを Notion DB から listing→『INC-007 ペルソナの仮決め（先週）』形式で一覧→クリック=振り返り or 『+新しいご相談』=新規コンサル直行"},
+      {id:"f22",lvl:"🟡", lock:"🚧", who:"🤖", label:"新コンサル起動時に振り返り要約をDify system prompt 注入", sub:"<b>→ あと：</b>振り返り完了→URL クエリで incident_id + summary_id を新コンサル(2.1/v3)に渡す→Dify chatflow で Notion DB から要約fetch→system prompt 注入で文脈接続『先ほどの振り返りを踏まえると…』"},
+      {id:"f23",lvl:"🟡", lock:"🚧", who:"🤖", label:"インシデントクローズ判定機構", sub:"<b>→ あと：</b>コンサル完了時に AI 自動 or ユーザー手動でステータス更新（オープン→進行中→クローズ）。クローズ済インシデントは2回目以降の一覧に出さない（参照履歴に残す）"},
+      {id:"f24",lvl:"🟡", lock:"🚧", who:"🤖", label:"AB チャットに15分セッションタイマー＋残3分で『最後の…です』告知＋0分で自動終了", sub:"<b>→ あと：</b>セッション開始時刻を localStorage 保存→ヘッダーに残り時間カウントダウン表示→残3分時点で AI 応答に『最後の質問にしましょう』プレフィックス挿入→0分で自動セッション終了→振り返り/レポート生成画面へ自動遷移。Mitsコンサル流儀『時間で切る』の実装"},
+      {id:"f25",lvl:"🟡", lock:"🚧", who:"🤖", label:"【Phase 1・短期】Dify Sandbox→Pro $59 アップグレード＋UTAGE側UI自前実装", sub:"<b>→ あと：</b>①Dify 課金 Sandbox→Pro $59/月（API無制限化・WebAppロゴ消去込）②UTAGE 側で自前 HTML/JS チャットUI を構築→裏で Dify API 直叩き（既存 v2.1/v3 chatflow 維持）③Mits構想（インシデント一覧・15分タイマー・振り返り・おかえりなさい・f19〜f24全部）をこの自前UI上で実装。バックエンドはDifyのままなのでリスク低・失敗してもDify標準WebAppに戻せる"},
+      {id:"f26",lvl:"🟡", lock:"🚧", who:"🤖", label:"【Phase 2・中期】バックエンド Dify chatflow → Anthropic API 直叩き + Notion DB 置換", sub:"<b>→ あと：</b>Phase 1完了後・AI-Mits利用者推移を見て判断。①Dify v2.1/v3 のノード構造を Anthropic SDK 直叩きで再実装（stream + tool_use 標準機能で代替）②RAG（現Indexing=Economical）を Notion DB 構造化データ system prompt 注入に置換（CORPUS2SKILL目次方式と整合）③並列稼働で実機検証→切替判定"},
+      {id:"f27",lvl:"🟡", lock:"🚧", who:"🤖", label:"【Phase 3・長期】Dify 完全離脱・Pro $59 解約・自前バックエンドのみ", sub:"<b>→ あと：</b>Phase 2 並列稼働検証で自前バックエンド優位確認後・Dify Pro 解約→自前構成のみ。コストはLLM利用料（Anthropic直）+ホスティング$0〜20/月のみ。ベンダーロック解消・主目的（ナレッジ蓄積・Mits手作業フィルター駆動）と完全合致"},
+      {id:"f28",lvl:"🟡", lock:"🚧", who:"🤖", label:"【路線確定】月セッション数 閾値=目標マトリクス（現状40→1万に向けたフェーズ移行ライン）", sub:"<b>→ あと：</b>現状: 月40セッション（実機DB 83件/2ヶ月）。閾値=目標値として運用：①月100=自前UI体験検証（1-3ヶ月）／②月500=PMF確認・月600インシデント蓄積（3-6ヶ月）／③<b>月3,000=Phase2移行ライン・Groq+Anthropicハイブリッド導入</b>（6-12ヶ月・推奨1年目標）／④月10,000=Phase3移行ライン・A100占有$1,080固定費へ切替（損益分岐: Sonnet時13,800/Opus時10,800）／⑤月30,000=社会インフラ規模・H100×2 or 複数A100。閾値到達=技術投資判断のトリガー兼Mitsの目標値"},
       {id:"f29",lvl:"🔴", lock:"🚧", who:"🤖", label:"【AI-Mits完成宣言時】現行v2(e472bc1f・本番不可侵)の全応答に新ファネル誘導リンクを差し込む", sub:"<b>→ あと：</b>AI-Mits 完成宣言と同時に v2 (e472bc1f) の system prompt 末尾に『どんな入力への応答にも必ず「📍 コンサルボットは新しい場所に移動しました → https://change.7years.life/p/Nfg3iO7vokkY」を差し込む』を追加。これで v2 既存利用者（再訪含む）が自然に新ファネル(AI-Mits AB入口)へ移行する。設問種別問わず全応答に差し込まれることが要点（条件分岐なし）。Mits Go で AI が Chrome MCP fetch (CSRF) で v2 workflow draft 更新→publish"}
     ]
   },
