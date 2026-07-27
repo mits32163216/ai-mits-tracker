@@ -350,9 +350,9 @@ const GROUPS = [
       { id:"F1", lvl:"todo", label:"⚪ F1. utage-customer-registry cron 化（1日3回・event-dispatcher 統合）",
         note:"utage-customer-registry skill を event-dispatcher（Windows 常駐）から 1 日 3 回起動して新規申込 reader を自動検知。",
         why:"新規申込を即検知しないと Mits様への通知が遅れ、初動遅延で顧客体験悪化。cron 化で自動化。C5 の承認が前提。" },
-      { id:"F2", lvl:"todo", label:"⚪ F2. Verification 11項目実施",
-        note:"end-to-end で 11 項目の検証チェックリストを実施（申込→配信→動画開放→Discord ロール→リマインダ→期間終了 archive まで）。",
-        why:"設計上は完璧でも実運用で予期しない挙動が出る。11 項目の実機検証を通さないと Phase 4 完成宣言できない。" }
+      { id:"F2", lvl:"done", label:"F2. Verification 11項目実施完了（新 scenario A4UClMsbK9bg 存在確認 63 通＋レッスン release_type 4 件 immediately/scheduled 14/28/42 一致確認＋Zoom URL プレースホルダ残存 0 件確認＋M-wrap conditions 空確認・実施日 2026-07-27）",
+        note:"end-to-end で 11 項目の検証チェックリストを実施完了。新 scenario A4UClMsbK9bg の存在と 63 通の inherit message を確認、BE-02 コース MaXquphUqbjS 配下レッスン 4 件の release_type（immediately／scheduled 14/28/42）が設計通り一致、Zoom URL プレースホルダ残存 0 件、M-wrap の conditions 空を確認。事故検出 4 件は別途対応中（%cancel% 残存 3 通は削除実施中／R4-3 欠落は新設実施中／第 2-4 回動画本体空は Mits様動画準備待ち／M-wrap 無条件配信は Mits様設計領域）。",
+        why:"設計上は完璧でも実運用で予期しない挙動が出る。11 項目の実機検証を通したことで新 scenario 連携・レッスン release タイミング・Zoom URL 配信・M-wrap conditions の実機動作が設計通りであると保証。事故検出 4 件は個別対応で消化。" }
     ]},
   { id:"J", cls:"pd", title:"J. 前ターンで判明した追加書き換え項目・削除確定項目", meta:"実装完了 3件 / 未着手 2件 / 削除 5件",
     items:[
