@@ -137,6 +137,23 @@ details.glossary summary:hover{color:#2563eb}
   </div>
 
   <details class="glossary">
+    <summary>🚦 優先度凡例・推奨実行順（クリックで展開）</summary>
+    <div class="gloss-grid">
+      <div class="gloss-item"><b>🔴🔴 不可逆・最後</b>発火即・戻せない。全前提が揃ってから最後に叩く（D13 商品側 scenario 連携切替）。</div>
+      <div class="gloss-item"><b>🔴 不可逆・順序厳守</b>D13 の前に必ず完了必須。実行順序を破ると事故確定（D1・D6・D7・D8・D9・D11・D12・D14）。</div>
+      <div class="gloss-item"><b>🟠 先行必須</b>Phase 4 着手前クローズ項目（C2 旧 LP 判断・B7 商品管理経路実機確認）。</div>
+      <div class="gloss-item"><b>🟡 前提タスク</b>後続の判断材料。並行実測で早く回す（B4・B6・B8）。</div>
+      <div class="gloss-item"><b>🟢 並行実施可</b>他タスクと独立して着手可能（B1 snapshot 更新・D10 合計本数確認）。</div>
+      <div class="gloss-item"><b>🔵 Mits様判断待ち</b>Mits様の意向・承認取得が必要（C4・C5・D6・D7）。</div>
+      <div class="gloss-item"><b>⚪ 後回し可</b>Phase 4 コア完了後の残タスク（E3 動画準備待ち・E6・F1・F2）。</div>
+      <div class="gloss-item" style="grid-column:1/-1;background:#fff8e1;padding:10px;border-radius:8px;margin-top:6px;">
+        <b style="min-width:auto;display:block;margin-bottom:4px;color:#7a5a00;">▶ 推奨実行順フロー</b>
+        🟠 C2 判断 → 🟡 B4/B6/B7/B8 並行実測 → 🔵 C4 判断 → 🔴 D1 → D6/D7 判断 → D8 → D11 → D12 → D9 → D14 → 🔴🔴 D13 最終切替 → ⚪ F1/F2
+      </div>
+    </div>
+  </details>
+
+  <details class="glossary">
     <summary>📚 AI 略語・記号辞典（クリックで展開）</summary>
     <div class="gloss-grid">
       <div class="gloss-item"><b>T1〜T9</b>参謀が Chrome MCP／UTAGE MCP 実機で行う調査タスク（Test の T）。実機確認しないと事故確定の項目群。</div>
@@ -204,7 +221,7 @@ const GROUPS = [
     ]},
   { id:"B", cls:"pb", title:"B. Phase 4 Step 1（参謀作業・Chrome MCP／UTAGE MCP 実機）", meta:"実機調査 T1-T9",
     items:[
-      { id:"B1", lvl:"todo", label:"T1 snapshot 更新（system-reference-refresher skill）",
+      { id:"B1", lvl:"todo", label:"🟢 T1 snapshot 更新（system-reference-refresher skill）",
         note:"UTAGE の全 ID 一覧（コース・バンドル・商品・ファネル・シナリオ）を最新版に再取得して .claude/utage_ids_snapshot.md を更新すること。",
         why:"snapshot が古いと存在しない ID を掴んで作業する事故が起きる（2026-04-20 dzhWqhwTP3na 誤記事故）。Phase 4 着手前に必ず新鮮化する。" },
       { id:"B2", lvl:"na", label:"T2 バンドル存否確認",
@@ -213,19 +230,19 @@ const GROUPS = [
       { id:"B3", lvl:"done", label:"T3 release_type 定数実測（B3-1 immediately + B3-2 scheduled 完了）",
         note:"会員サイトレッスンの「いつ開放するか」設定の実際の定数（immediately／scheduled 等）を実機で叩いて確認。BE-02 スコープでは immediately と scheduled の 2 種のみ使用。",
         why:"公式ドキュメントの定数と実際 API が受け付ける文字列が食い違うことがある。実測しないと E1-2〜E1-4 の scheduled/N日後 設定が失敗する。" },
-      { id:"B4", lvl:"todo", label:"T4 archives/1889 期間終了 archive 機能実測",
+      { id:"B4", lvl:"todo", label:"🟡 T4 archives/1889 期間終了 archive 機能実測",
         note:"UTAGE ヘルプ archives/1889（コース段階開放 4 方式）の archive 機能＝期限が来た reader を自動で配信対象外にする機能を実機で確認。",
         why:"2 ヶ月／3 ヶ月契約の期間が過ぎた reader にリマインダを送り続けると信頼関係を損ねる。archive 機能で自動除外できるか確認しないと C10（期間終了 reader 自動除外）を保証できない。" },
       { id:"B5", lvl:"done", label:"T5 Discord URL 実機確認（正本 Tx7KCvDnZN／BE-02 Invite Tracking N3vpUKJDxA）",
         note:"Discord の招待 URL は「共通の正本 URL」と「BE-02 購入者専用の招待計測 URL」の 2 本立てで運用。用途分離が判明した。",
         why:"招待 URL を混同すると BE-02 購入者への自動ロール付与が動かない／購入していない人が誤って BE-02 チャンネルに入る事故が起きる。用途分離の実機確認が必須。" },
-      { id:"B6", lvl:"todo", label:"T6 UTAGE product OuAPF2gwGhYh 決済完了自動 mail 実装確認",
+      { id:"B6", lvl:"todo", label:"🟡 T6 UTAGE product OuAPF2gwGhYh 決済完了自動 mail 実装確認",
         note:"BE-02 商品（product ID: OuAPF2gwGhYh）が決済完了した時点で自動送信されるメールが実装されているかを確認。",
         why:"決済直後のオンボーディングメールが飛ばないと購入者が Discord 招待 URL や会員サイト URL に辿り着けない。決済 → 案内の連鎖が切れたら顧客体験が最悪になる。" },
-      { id:"B7", lvl:"todo", label:"T7 商品管理画面 scenario 連携修正経路実機確認",
+      { id:"B7", lvl:"todo", label:"🟠 T7 商品管理画面 scenario 連携修正経路実機確認",
         note:"LP のフォームを直接触らずに、LP に紐付いた「商品」の管理画面から scenario 連携を新 scenario に切り替える方式（Mits様 2026-07-27 指示）。この経路が実機で成立するか事前確認。",
         why:"LP のフォームを直接触ると 2026-07-19 事故（payment children 上書きで Mits様手動設定が全消失）の再犯リスクあり。商品管理経由なら物理的にリスクゼロ。ただし実機で経路確認しないと「本当に商品側で切替できるか」不明。" },
-      { id:"B8", lvl:"todo", label:"T8 is_blocked mystery バグ新 scenario 適用検証",
+      { id:"B8", lvl:"todo", label:"🟡 T8 is_blocked mystery バグ新 scenario 適用検証",
         note:"reader が原因不明で勝手に is_blocked=true になる既知バグ（reference_utage_is_blocked_mystery_bug.md）が新 scenario でも起きるか確認。",
         why:"is_blocked=true になった reader は配信が届かない＝購入者がメールを受け取れない。新 scenario で発症するか事前確認しないと Phase 4 稼働後に「なぜ届かない」で炎上する。" },
       { id:"B9", lvl:"done", label:"T9 Zoom URL 単一運用（全 6 講義共通 URL 受領済）",
@@ -237,22 +254,22 @@ const GROUPS = [
       { id:"C1", lvl:"done", label:"Tier 1 #1 新 scenario 命名（BE-02_AIエージェント経営 2ヶ月グルコン_コピー20260727140251）",
         note:"新 scenario の名前を確定させる作業。既存 scenario をコピーして作った子 scenario の命名。",
         why:"scenario 名が曖昧だと後から「どれが本番？」で迷子になる。日付＋コピー元を明示することで運用時の取り違えを防ぐ。" },
-      { id:"C2", lvl:"wait", label:"Tier 1 #2 旧 LP FRtiiVb5j5qY フォーム扱い判断（Phase 4 着手前必須クローズ）",
+      { id:"C2", lvl:"wait", label:"🟠 Tier 1 #2 旧 LP FRtiiVb5j5qY フォーム扱い判断（Phase 4 着手前必須クローズ）",
         note:"旧 BE-02 LP（page ID: FRtiiVb5j5qY）のフォームを「廃止」「継続」「移行」のどれにするか Mits様判断が必要。",
         why:"旧 LP フォームが生きたままだと新 scenario と旧 scenario の両方に reader が流れ込む。二重配信・データ分散事故を防ぐため Mits様の方針決定が必要。" },
       { id:"C3", lvl:"done", label:"Tier 1 #3 Zoom URL run book パターン（単一 URL で完了）",
         note:"Zoom URL の運用ルール（誰が発行・どこに書く・変更時の伝達）を確定。単一 URL 運用で決着。",
         why:"運用ルールが曖昧だと Mits様稼働日に「あの URL どこ？」で 5 分ロス→顧客体験悪化。単一運用で問答無用にする。" },
-      { id:"C4", lvl:"wait", label:"Tier 1 #4 会員ログイン URL 配布方式 P/Q/R 判断",
+      { id:"C4", lvl:"wait", label:"🔵 Tier 1 #4 会員ログイン URL 配布方式 P/Q/R 判断",
         note:"会員サイトログイン URL の配布方式を P（決済完了メール）／Q（LINE 併走）／R（両方）から Mits様が選ぶ。",
         why:"配布方式でオンボーディング体験が大きく変わる。P だけだとメール見ない人が入れない・Q だけだと LINE 未登録者が入れない。Mits様の判断が必要。" },
-      { id:"C5", lvl:"wait", label:"Tier 1 #5 cron 案 α オペレーション連鎖承認",
+      { id:"C5", lvl:"wait", label:"🔵 Tier 1 #5 cron 案 α オペレーション連鎖承認",
         note:"event-dispatcher（Windows 常駐 1 日 3 回）が新規申込 reader を検知し Slack DM で Mits様通知する仕組みの承認。",
         why:"通知経路が確定していないと新規申込があっても Mits様が気づかず放置→初動遅れで信頼失う。cron 案 α で承認取得が必要。" }
     ]},
   { id:"D", cls:"pd", title:"D. Phase 4 Step 3（scenario 再利用 + 商品 scenario 連携修正）", meta:"配信設定",
     items:[
-      { id:"D1", lvl:"todo", label:"inherit message 全 65 通確認（message_list）",
+      { id:"D1", lvl:"todo", label:"🔴 inherit message 全 65 通確認（message_list）",
         note:"既存 scenario をコピーして生まれた新 scenario が親から引き継いだメール／LINE 全 65 通を message_list API で 1 通ずつ確認。",
         why:"inherit した 65 通のどれかに Zoom URL の古い値や旧サンクスページリンクが残っていると新規購入者に古い情報が届く。65 通全数チェックしないと事故確定。" },
       { id:"D2", lvl:"na", label:"Step draft 14 通削除 or 保留",
@@ -267,31 +284,31 @@ const GROUPS = [
       { id:"D5", lvl:"na", label:"R 系リマインダ全書き換え",
         note:"R 系（Reminder）リマインダ全書き換え案。",
         why:"越権と判断され撤回。" },
-      { id:"D6", lvl:"wait", label:"動画配信通知 M#2-#4 要否判断",
+      { id:"D6", lvl:"wait", label:"🔴🔵 動画配信通知 M#2-#4 要否判断",
         note:"動画講義 #2〜#4 の配信タイミングでメール／LINE 通知を送るかの Mits様判断。",
         why:"通知を送ると「見る」促進になるが、送りすぎると通知疲労で開封率低下。Mits様の設計判断が必要。" },
-      { id:"D7", lvl:"wait", label:"M-wrap-2m／M-wrap-3m 要否判断",
+      { id:"D7", lvl:"wait", label:"🔴🔵 M-wrap-2m／M-wrap-3m 要否判断",
         note:"契約期間終了時（2 ヶ月満了・3 ヶ月満了）の締めくくりメール要否判断。",
         why:"締めメールで次商品（アップセル）への流れが作れる。逆に無ければ関係が途切れる。Mits様の意向確認が必要。" },
-      { id:"D8", lvl:"wait", label:"Mits様指示範囲の書き換え起草・承認取得",
+      { id:"D8", lvl:"wait", label:"🔴 Mits様指示範囲の書き換え起草・承認取得",
         note:"Mits様が「ここは書き換えて OK」と指定した範囲のみメール本文を起草→承認取得。",
         why:"指示範囲外を触ると越権（D3/D4/D5 と同じ事故）。指示範囲だけを厳密に守って書き換え、必ず承認取得してから publish。" },
-      { id:"D9", lvl:"todo", label:"動画講義 #1-#4 会員サイトレッスンリンク組み込み（レッスン ID 判明済）",
+      { id:"D9", lvl:"todo", label:"🔴 動画講義 #1-#4 会員サイトレッスンリンク組み込み（レッスン ID 判明済）",
         note:"BE-02 動画講義 4 本を会員サイトのレッスンとして組み込むリンク作業。レッスン ID は既に判明済。",
         why:"リンクが繋がっていないと購入者が動画に辿り着けない。E1-1〜E1-4 のレッスン作成と組で成立する。" },
-      { id:"D10", lvl:"todo", label:"archives/9110 遵守：合計配信本数両立確認",
+      { id:"D10", lvl:"todo", label:"🟢 archives/9110 遵守：合計配信本数両立確認",
         note:"UTAGE ヘルプ archives/9110（1 日 1 通目安）遵守。全メール＋LINE の合計本数が 1 日 1 通を超えないか確認。",
         why:"1 日に複数通届くとスパム扱いされて配信ブロック（is_blocked）される。9110 は UTAGE 側の目安ラインなので遵守しないと事故確定。" },
-      { id:"D11", lvl:"todo", label:"Zoom URL プレースホルダ pre-flight",
+      { id:"D11", lvl:"todo", label:"🔴 Zoom URL プレースホルダ pre-flight",
         note:"Zoom URL 差込前に「%zoom_url% プレースホルダが全該当メール／LINE に埋め込まれているか」を事前検査。",
         why:"プレースホルダが 1 通でも欠けていると差込漏れで購入者に URL 届かず→Zoom 入れない事故。差込前 pre-flight で防ぐ。" },
-      { id:"D12", lvl:"todo", label:"Zoom URL 差込",
+      { id:"D12", lvl:"todo", label:"🔴 Zoom URL 差込",
         note:"Zoom URL プレースホルダを全該当メール／LINE に一括で差し込む作業。",
         why:"事前確認（D11）後の実行フェーズ。単一 URL 運用（B9）なので差込は 1 回で全メール完了。" },
-      { id:"D13", lvl:"todo", label:"商品 OuAPF2gwGhYh の商品管理画面から scenario 連携修正",
+      { id:"D13", lvl:"todo", label:"🔴🔴 商品 OuAPF2gwGhYh の商品管理画面から scenario 連携修正",
         note:"BE-02 商品（OuAPF2gwGhYh）の商品管理画面から scenario 連携を旧→新に切り替える作業。",
         why:"A4 で確定した非破壊経路（LP フォーム直接編集を避ける）の実行。商品側で切替すれば LP は無傷。" },
-      { id:"D14", lvl:"todo", label:"M8 遵守：ダミーメール実登録テスト",
+      { id:"D14", lvl:"todo", label:"🔴 M8 遵守：ダミーメール実登録テスト",
         note:"M8＝過去事故から学んだ「フォーム作成後は必ず実登録テストする」ルール。ダミーメアドで実際に申込→scenario 発火→着信を確認。",
         why:"2026-06-14 F0-04 事故（action=\"#\" のダミー放置でフォーム動作せず）の再発防止。実登録テストしないと本番で「申込したのにメール来ない」で信頼喪失。" }
     ]},
@@ -315,7 +332,7 @@ const GROUPS = [
       { id:"E2", lvl:"done", label:"E2. N19 遵守：レッスングループ「アーカイブ」（QoHAZkKeoKe3）is_published=true 実測確認済",
         note:"N19＝レッスングループが下書き状態のまま公開してはいけないルール。レッスングループ ID QoHAZkKeoKe3 が公開状態であることを実機で確認済。",
         why:"レッスングループが下書きだと配下レッスンが見えない事故が起きる（過去複数回発生）。実測確認で回避。" },
-      { id:"E3", lvl:"active", label:"E3. M14 遵守：動画差し込み時に対応（Mits様動画準備待ち）",
+      { id:"E3", lvl:"active", label:"⚪ E3. M14 遵守：動画差し込み時に対応（Mits様動画準備待ち）",
         note:"M14＝レッスン HTML 投入方式ルール（utage-lesson-html-uploader skill 使用）。動画本体が準備でき次第、この方式で差し込む。",
         why:"CKEditor 直投入だと HTML が破壊されて表示崩れる過去事故あり。M14 遵守で必ず skill 経由。動画到着待ち。" },
       { id:"E4", lvl:"done", label:"E4. 特典①②③ バンドル同梱",
@@ -324,16 +341,16 @@ const GROUPS = [
       { id:"E5", lvl:"na", label:"E5. M20 バンドル-商品連動確認",
         note:"M20＝バンドルと商品の連動確認ルール。バンドル変更なし方針で不要。",
         why:"A4 で確定したバンドル変更なし方針により、連動確認は不要（既存の連動をそのまま使う）。" },
-      { id:"E6", lvl:"todo", label:"E6. T4 完了後 archives/1889 archive 設定反映",
+      { id:"E6", lvl:"todo", label:"⚪ E6. T4 完了後 archives/1889 archive 設定反映",
         note:"T4（B4）で archive 機能の実測が済んだあと、archives/1889 に従って archive 設定を反映。",
         why:"archive 設定しないと期間終了 reader に配信が続く→信頼失う。T4 の実測結果を待って設定反映。" }
     ]},
   { id:"F", cls:"pf", title:"F. Phase 4 Step 9（cron 検知・end-to-end 検証）", meta:"最終検証",
     items:[
-      { id:"F1", lvl:"todo", label:"F1. utage-customer-registry cron 化（1日3回・event-dispatcher 統合）",
+      { id:"F1", lvl:"todo", label:"⚪ F1. utage-customer-registry cron 化（1日3回・event-dispatcher 統合）",
         note:"utage-customer-registry skill を event-dispatcher（Windows 常駐）から 1 日 3 回起動して新規申込 reader を自動検知。",
         why:"新規申込を即検知しないと Mits様への通知が遅れ、初動遅延で顧客体験悪化。cron 化で自動化。C5 の承認が前提。" },
-      { id:"F2", lvl:"todo", label:"F2. Verification 11項目実施",
+      { id:"F2", lvl:"todo", label:"⚪ F2. Verification 11項目実施",
         note:"end-to-end で 11 項目の検証チェックリストを実施（申込→配信→動画開放→Discord ロール→リマインダ→期間終了 archive まで）。",
         why:"設計上は完璧でも実運用で予期しない挙動が出る。11 項目の実機検証を通さないと Phase 4 完成宣言できない。" }
     ]}
