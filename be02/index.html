@@ -308,9 +308,9 @@ const GROUPS = [
       { id:"D13", lvl:"done", label:"D13. 商品 OuAPF2gwGhYh の 2ヶ月版 Yxs2XikI1QOi・3ヶ月版 eAPFTnsdaM0O の登録シナリオを D87uWEktb5EP から A4UClMsbK9bg に変更完了（2026-07-27）",
         note:"BE-02 商品（OuAPF2gwGhYh）配下の商品詳細 2 種（2ヶ月版 Yxs2XikI1QOi／3ヶ月版 eAPFTnsdaM0O）の登録シナリオを旧 D87uWEktb5EP から新 A4UClMsbK9bg へ商品管理画面経由で切替完了。実行日時 2026-07-27。副作用なし（バンドル F1-07 ／ アクション BE-02_付与_F0-01_解説動画_ALL ／ 通知メール ac_nishida@spro01.com は維持）。以後の新規購入者は新 scenario A4UClMsbK9bg に登録される状態。",
         why:"A4 で確定した非破壊経路（LP フォーム直接編集を避ける）の実行。商品側で切替すれば LP は無傷。新旧 scenario の切替を LP を触らずに達成し、2026-07-19 事故（payment children 上書きで Mits様手動設定全消失）の再犯リスクを回避した。" },
-      { id:"D14", lvl:"todo", label:"🔴 M8 遵守：ダミーメール実登録テスト",
-        note:"M8＝過去事故から学んだ「フォーム作成後は必ず実登録テストする」ルール。ダミーメアドで実際に申込→scenario 発火→着信を確認。",
-        why:"2026-06-14 F0-04 事故（action=\"#\" のダミー放置でフォーム動作せず）の再発防止。実登録テストしないと本番で「申込したのにメール来ない」で信頼喪失。" }
+      { id:"D14", lvl:"done", label:"D14. M8 遵守：ダミーメール実登録テスト完了（2026-07-27）— 新 scenario A4UClMsbK9bg にダミー reader Eg5SHdAnPdPz（test-be02-verify-202607271700@spro01.com／event_date=2026-08-12）を message_reader_create で作成し、queue_list で 26 通の予約発火（S1-S7 mail 7通＋Reminder mail 14通＋M系 mail 5通）と J2／J4／J11 書換内容の反映を実測確認済み。テスト完了後 has_step_scheduled=false ＋ has_reminder=false で queue 全キャンセル済（hard delete は UTAGE 管理画面で Mits様が実施予定）。",
+        note:"M8＝過去事故から学んだ「フォーム作成後は必ず実登録テストする」ルール。ダミーメアドで実際に申込→scenario 発火→着信を確認。実施日 2026-07-27。ダミー reader Eg5SHdAnPdPz を message_reader_create（scenario A4UClMsbK9bg・email test-be02-verify-202607271700@spro01.com・event_date=2026-08-12）で作成、message_reader_queue_list で 26 通が draft／scheduled で並んだことを確認、S1-S7・Reminder・M系配信の予約発火と J2／J4／J11 書換の反映を実測。検証後は message_reader_update で has_step_scheduled=false／has_reminder=false に切替えて queue を全キャンセル済み（hard delete は UTAGE 管理画面で Mits様が実施予定）。",
+        why:"2026-06-14 F0-04 事故（action=\"#\" のダミー放置でフォーム動作せず）の再発防止。実登録テストしないと本番で「申込したのにメール来ない」で信頼喪失。今回は新 scenario A4UClMsbK9bg 配下の 26 通配信ラインが実測で発火することを確認できたため、D13 の切替結果を本番投入する前提条件を満たした。" }
     ]},
   { id:"E", cls:"pe", title:"E. Phase 4 Step 4（会員サイトコース内レッスン追加・バンドル変更なし）", meta:"会員サイト設定",
     items:[
