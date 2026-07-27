@@ -141,14 +141,14 @@ details.glossary summary:hover{color:#2563eb}
     <div class="gloss-grid">
       <div class="gloss-item"><b>🔴🔴 不可逆・最後</b>発火即・戻せない。全前提が揃ってから最後に叩く（D13 商品側 scenario 連携切替）。</div>
       <div class="gloss-item"><b>🔴 不可逆・順序厳守</b>D13 の前に必ず完了必須。実行順序を破ると事故確定（D1・D6・D7・D8・D9・D11・D12・D14）。</div>
-      <div class="gloss-item"><b>🟠 先行必須</b>Phase 4 着手前クローズ項目（C2 旧 LP 判断・B7 商品管理経路実機確認）。</div>
+      <div class="gloss-item"><b>🟠 先行必須</b>Phase 4 着手前クローズ項目（B7 商品管理経路実機確認）。</div>
       <div class="gloss-item"><b>🟡 前提タスク</b>後続の判断材料。並行実測で早く回す（B4・B6・B8）。</div>
       <div class="gloss-item"><b>🟢 並行実施可</b>他タスクと独立して着手可能（B1 snapshot 更新・D10 合計本数確認）。</div>
       <div class="gloss-item"><b>🔵 Mits様判断待ち</b>Mits様の意向・承認取得が必要（C4・C5・D6・D7）。</div>
       <div class="gloss-item"><b>⚪ 後回し可</b>Phase 4 コア完了後の残タスク（E3 動画準備待ち・E6・F1・F2）。</div>
       <div class="gloss-item" style="grid-column:1/-1;background:#fff8e1;padding:10px;border-radius:8px;margin-top:6px;">
         <b style="min-width:auto;display:block;margin-bottom:4px;color:#7a5a00;">▶ 推奨実行順フロー</b>
-        🟠 C2 判断 → 🟡 B4/B6/B7/B8 並行実測 → 🔵 C4 判断 → 🔴 D1 → D6/D7 判断 → D8 → D11 → D12 → D9 → D14 → 🔴🔴 D13 最終切替 → ⚪ F1/F2
+        🟡 B4/B6/B7/B8 並行実測 → 🔵 C4 判断 → 🔴 D1 → D6/D7 判断 → D8 → D11 → D12 → D9 → D14 → 🔴🔴 D13 最終切替 → ⚪ F1/F2
       </div>
     </div>
   </details>
@@ -254,9 +254,9 @@ const GROUPS = [
       { id:"C1", lvl:"done", label:"Tier 1 #1 新 scenario 命名（BE-02_AIエージェント経営 2ヶ月グルコン_コピー20260727140251）",
         note:"新 scenario の名前を確定させる作業。既存 scenario をコピーして作った子 scenario の命名。",
         why:"scenario 名が曖昧だと後から「どれが本番？」で迷子になる。日付＋コピー元を明示することで運用時の取り違えを防ぐ。" },
-      { id:"C2", lvl:"wait", label:"🟠 Tier 1 #2 旧 LP FRtiiVb5j5qY フォーム扱い判断（Phase 4 着手前必須クローズ）",
-        note:"旧 BE-02 LP（page ID: FRtiiVb5j5qY）のフォームを「廃止」「継続」「移行」のどれにするか Mits様判断が必要。",
-        why:"旧 LP フォームが生きたままだと新 scenario と旧 scenario の両方に reader が流れ込む。二重配信・データ分散事故を防ぐため Mits様の方針決定が必要。" },
+      { id:"C2", lvl:"done", label:"Tier 1 #2 旧 LP FRtiiVb5j5qY フォーム扱い判断（旧 LP アーカイブ済で決着）",
+        note:"旧 BE-02 LP（page ID: FRtiiVb5j5qY）は既にアーカイブ済（Mits様 2026-07-27 確定）。新規流入リスクゼロ。",
+        why:"旧 LP がアーカイブ済のため、新 scenario と旧 scenario への二重流入は物理的に発生しない。判断待ちクローズ。" },
       { id:"C3", lvl:"done", label:"Tier 1 #3 Zoom URL run book パターン（単一 URL で完了）",
         note:"Zoom URL の運用ルール（誰が発行・どこに書く・変更時の伝達）を確定。単一 URL 運用で決着。",
         why:"運用ルールが曖昧だと Mits様稼働日に「あの URL どこ？」で 5 分ロス→顧客体験悪化。単一運用で問答無用にする。" },
