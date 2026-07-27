@@ -91,6 +91,7 @@ details.glossary summary:hover{color:#2563eb}
 .item{
   padding:10px 12px;border-radius:10px;margin-bottom:8px;
   border-left:3px solid transparent;background:#fafbfc;
+  transition:opacity .2s, box-shadow .2s;
 }
 .item .row1{display:flex;align-items:flex-start;gap:8px}
 .item .row1 .lbl{font-size:14px;font-weight:600}
@@ -103,17 +104,68 @@ details.glossary summary:hover{color:#2563eb}
 .item .why-note .w-lbl{color:#dc2626;font-weight:600}
 .item .why-note p{margin:2px 0 0}
 
-/* lvl 状態 */
-.item.lvl-done{background:#f0f5f0;border-left-color:#16a34a}
-.item.lvl-done .lbl{text-decoration:line-through;color:#5a7a5a}
-.item.lvl-active{background:#fff8e1;border-left-color:#f59e0b}
-.item.lvl-active .lbl{color:#7a5a00}
-.item.lvl-todo{background:#fef2f2;border-left-color:#dc2626}
-.item.lvl-todo .lbl{color:#7a1a1a}
-.item.lvl-wait{background:#f3e8ff;border-left-color:#7c3aed}
-.item.lvl-wait .lbl{color:#5b21b6}
-.item.lvl-na{background:#f3f4f6;border-left-color:#9ca3af;opacity:.65}
-.item.lvl-na .lbl{text-decoration:line-through;color:#6b7280}
+/* lvl 状態 — 完了/不要は薄く、未完了は目立たせる（Mits様が「終わっていないタスク」を一目で発見できる状態） */
+
+/* 🟢 完了：薄く目立たなくする */
+.item.lvl-done{
+  background:#eef1ee;border-left:2px solid #b7c7b7;
+  opacity:.4;box-shadow:none;
+}
+.item.lvl-done .lbl{
+  text-decoration:line-through;color:#8a9a8a;font-weight:normal;
+}
+.item.lvl-done .why-note{opacity:.7}
+.item.lvl-done:hover{opacity:.85}
+
+/* ⚫ 不要（na/skip）：さらに薄く */
+.item.lvl-na, .item.lvl-skip{
+  background:#f0f1f3;border-left:2px solid #c8ccd1;
+  opacity:.35;box-shadow:none;
+}
+.item.lvl-na .lbl, .item.lvl-skip .lbl{
+  text-decoration:line-through;color:#9096a0;font-weight:normal;
+}
+.item.lvl-na .why-note, .item.lvl-skip .why-note{opacity:.7}
+.item.lvl-na:hover, .item.lvl-skip:hover{opacity:.85}
+
+/* 🔴 未着手：最も強く目立たせる（赤で警告） */
+.item.lvl-todo{
+  background:#fff5f5;border-left:4px solid #dc2626;
+  box-shadow:0 2px 8px rgba(220,38,38,.18);
+  opacity:1;
+}
+.item.lvl-todo .lbl{
+  color:#991b1b;font-weight:800;font-size:14.5px;
+}
+.item.lvl-todo::before{
+  content:"🔴 ";
+}
+
+/* 🟣 Mits様判断待ち：紫で強調 */
+.item.lvl-wait{
+  background:#f9f2ff;border-left:4px solid #7c3aed;
+  box-shadow:0 2px 8px rgba(124,58,237,.18);
+  opacity:1;
+}
+.item.lvl-wait .lbl{
+  color:#5b21b6;font-weight:800;font-size:14.5px;
+}
+.item.lvl-wait::before{
+  content:"🟣 ";
+}
+
+/* 🟡 進行中：黄で強調 */
+.item.lvl-active{
+  background:#fffbe6;border-left:4px solid #f59e0b;
+  box-shadow:0 2px 8px rgba(245,158,11,.20);
+  opacity:1;
+}
+.item.lvl-active .lbl{
+  color:#7a5a00;font-weight:800;font-size:14.5px;
+}
+.item.lvl-active::before{
+  content:"🟡 ";
+}
 
 .footer{margin-top:30px;color:var(--mute);font-size:11px;text-align:center}
 .back-btn{
