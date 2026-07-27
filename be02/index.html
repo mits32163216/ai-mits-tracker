@@ -128,7 +128,7 @@ details.glossary summary:hover{color:#2563eb}
 <div class="wrap">
   <a class="back-btn" href="../">← AI-MITS トラッカー一覧に戻る</a>
   <h1>📋 BE-02 実装トラッカー（AIエージェント経営 2ヶ月グルコン）</h1>
-  <div class="sub">最終更新：2026-07-27（F3 %cancel% 削除完了 3通反映＋D13 商品 scenario 連携変更完了＋J5 廃止 draft 統合完了・実測完了 6件・実装完了 3件反映＋E6/C4 完了）／ Round 1-9 輪番議論 → Phase 4 全 6 Step の実装進捗を平場で追える形に整理。各タスクに 📖 注釈（用語解説）／ 🎯 なぜやる（目的）付き。</div>
+  <div class="sub">最終更新：2026-07-27（F4 R4-3 リマインダ新設完了＋F3 %cancel% 削除完了 3通反映＋D13 商品 scenario 連携変更完了＋J5 廃止 draft 統合完了・実測完了 6件・実装完了 3件反映＋E6/C4 完了）／ Round 1-9 輪番議論 → Phase 4 全 6 Step の実装進捗を平場で追える形に整理。各タスクに 📖 注釈（用語解説）／ 🎯 なぜやる（目的）付き。</div>
 
   <div class="legend">
     <span><b>ステータス</b>：🟢 完了　🟡 進行中・待機　🔴 未着手　🟣 Mits様判断待ち　⚫ 不要（スコープ外・撤回）</span>
@@ -355,7 +355,10 @@ const GROUPS = [
         why:"設計上は完璧でも実運用で予期しない挙動が出る。11 項目の実機検証を通したことで新 scenario 連携・レッスン release タイミング・Zoom URL 配信・M-wrap conditions の実機動作が設計通りであると保証。事故検出 4 件は個別対応で消化。" },
       { id:"F3", lvl:"done", label:"F3. 事故対応: %cancel% 削除完了 3通（R3-1 mail VtRmJkUnd7dR ／ M-wrap-2m mail PdGTd6TLS39F ／ M-wrap-3m mail aDKQvbFUjplZ・message_update 200 OK ×3・実施日 2026-07-27 15:42）",
         note:"F2 Verification で検出された事故ポテンシャル ①「%cancel% プレースホルダ残存 3 通」の対処完了。R3-1 mail（ID: VtRmJkUnd7dR）／ M-wrap-2m mail（ID: PdGTd6TLS39F）／ M-wrap-3m mail（ID: aDKQvbFUjplZ）の 3 通末尾から %cancel% プレースホルダを削除。UTAGE message_update API 200 OK × 3 応答で成功確認。実施日時 2026-07-27 15:42。",
-        why:"memory feedback_no_default_cancel_link.md 遵守。%cancel% プレースホルダは UTAGE 側で「配信停止リンク」に自動展開されるため、本文末尾に残置すると受講者が意図せず配信停止し重要通知を受け取れなくなる事故が起きる。F2 で検出されたポテンシャル事故を実配信前に物理的に排除した。" }
+        why:"memory feedback_no_default_cancel_link.md 遵守。%cancel% プレースホルダは UTAGE 側で「配信停止リンク」に自動展開されるため、本文末尾に残置すると受講者が意図せず配信停止し重要通知を受け取れなくなる事故が起きる。F2 で検出されたポテンシャル事故を実配信前に物理的に排除した。" },
+      { id:"F4", lvl:"done", label:"F4. 事故対応: R4-3 リマインダ mail+LINE 新設完了（mail gcRIDsDIciGa ／ LINE BxLQ6g3mxpC7・send_day=39・reserved・R2/R3/R4 の -3 対称性回復・実施日 2026-07-27）",
+        note:"F2 Verification で検出された事故ポテンシャル ②「R4-3 リマインダ欠落（対称性違反）」の対処完了。R4-3 mail（ID: gcRIDsDIciGa）と R4-3 LINE（ID: BxLQ6g3mxpC7）を新規作成・send_day=39（event_date + 39 日・第 4 回本番 3 日前）・reserved 化完了。R2-3／R3-3 と同型の -3 対称性を回復。%cancel% は UTAGE API バリデーションで必須項目のため、既存 R 系統と同型で挿入（前タスク F3 の %cancel% 削除 3 通と API 挙動非対称のためこちらは挿入で通す）。実施日 2026-07-27。",
+        why:"R2-3／R3-3 は -3 日前リマインダを持つのに R4-3 だけ欠落していると、第 4 回本番の参加率が構造的に下がる。対称性を回復することで完走率を担保。F2 の事故ポテンシャル ② を実配信前に物理排除。" }
     ]},
   { id:"J", cls:"pd", title:"J. 前ターンで判明した追加書き換え項目・削除確定項目", meta:"実装完了 3件 / 未着手 2件 / 削除 5件",
     items:[
