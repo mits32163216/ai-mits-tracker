@@ -128,7 +128,7 @@ details.glossary summary:hover{color:#2563eb}
 <div class="wrap">
   <a class="back-btn" href="../">← AI-MITS トラッカー一覧に戻る</a>
   <h1>📋 BE-02 実装トラッカー（AIエージェント経営 2ヶ月グルコン）</h1>
-  <div class="sub">最終更新：2026-07-27（実測完了 6件・実装完了 3件反映＋E6/C4 完了）／ Round 1-9 輪番議論 → Phase 4 全 6 Step の実装進捗を平場で追える形に整理。各タスクに 📖 注釈（用語解説）／ 🎯 なぜやる（目的）付き。</div>
+  <div class="sub">最終更新：2026-07-27（D13 商品 scenario 連携変更完了＋J5 廃止 draft 統合完了・実測完了 6件・実装完了 3件反映＋E6/C4 完了）／ Round 1-9 輪番議論 → Phase 4 全 6 Step の実装進捗を平場で追える形に整理。各タスクに 📖 注釈（用語解説）／ 🎯 なぜやる（目的）付き。</div>
 
   <div class="legend">
     <span><b>ステータス</b>：🟢 完了　🟡 進行中・待機　🔴 未着手　🟣 Mits様判断待ち　⚫ 不要（スコープ外・撤回）</span>
@@ -305,9 +305,9 @@ const GROUPS = [
       { id:"D12", lvl:"todo", label:"🔴 Zoom URL 差込",
         note:"Zoom URL プレースホルダを全該当メール／LINE に一括で差し込む作業。",
         why:"事前確認（D11）後の実行フェーズ。単一 URL 運用（B9）なので差込は 1 回で全メール完了。" },
-      { id:"D13", lvl:"todo", label:"🔴🔴 商品 OuAPF2gwGhYh の商品管理画面から scenario 連携修正",
-        note:"BE-02 商品（OuAPF2gwGhYh）の商品管理画面から scenario 連携を旧→新に切り替える作業。",
-        why:"A4 で確定した非破壊経路（LP フォーム直接編集を避ける）の実行。商品側で切替すれば LP は無傷。" },
+      { id:"D13", lvl:"done", label:"D13. 商品 OuAPF2gwGhYh の 2ヶ月版 Yxs2XikI1QOi・3ヶ月版 eAPFTnsdaM0O の登録シナリオを D87uWEktb5EP から A4UClMsbK9bg に変更完了（2026-07-27）",
+        note:"BE-02 商品（OuAPF2gwGhYh）配下の商品詳細 2 種（2ヶ月版 Yxs2XikI1QOi／3ヶ月版 eAPFTnsdaM0O）の登録シナリオを旧 D87uWEktb5EP から新 A4UClMsbK9bg へ商品管理画面経由で切替完了。実行日時 2026-07-27。副作用なし（バンドル F1-07 ／ アクション BE-02_付与_F0-01_解説動画_ALL ／ 通知メール ac_nishida@spro01.com は維持）。以後の新規購入者は新 scenario A4UClMsbK9bg に登録される状態。",
+        why:"A4 で確定した非破壊経路（LP フォーム直接編集を避ける）の実行。商品側で切替すれば LP は無傷。新旧 scenario の切替を LP を触らずに達成し、2026-07-19 事故（payment children 上書きで Mits様手動設定全消失）の再犯リスクを回避した。" },
       { id:"D14", lvl:"todo", label:"🔴 M8 遵守：ダミーメール実登録テスト",
         note:"M8＝過去事故から学んだ「フォーム作成後は必ず実登録テストする」ルール。ダミーメアドで実際に申込→scenario 発火→着信を確認。",
         why:"2026-06-14 F0-04 事故（action=\"#\" のダミー放置でフォーム動作せず）の再発防止。実登録テストしないと本番で「申込したのにメール来ない」で信頼喪失。" }
@@ -365,9 +365,9 @@ const GROUPS = [
       { id:"J11", lvl:"done", label:"J11. 動画配信通知 M#2-#4 3 通 + M-wrap 2/3m 2 通 の新規作成・reserved 化完了",
         note:"動画講義 #2/#3/#4 の配信通知メール 3 通（Day14/28/42）と、契約期間終了時のラップアップメール 2 通（Day56 2 ヶ月版／Day84 3 ヶ月版）を新規作成し reserved 化した。SKOOL 記述は含めず全て Discord 表記で統一。",
         why:"D6/D7 で Mits様判断待ちだった通知メールの必要性が確定した想定で先行実装。Discord 一本化で SKOOL/Discord の使い分け混乱を回避（禁止事項⑦ SKOOL に有料商品配布物を置かない、と整合）。" },
-      { id:"J5", lvl:"todo", label:"🔴 J5. Day12/Day13 廃止 draft の Mits 固有名文統合",
-        note:"Day12/Day13 の廃止 draft メールに含まれる Mits 固有名文（哲学・独自用語）を新 scenario の該当メールに統合する作業。mits-writer subagent は UTAGE MCP tool 未ロードで実本文取得不可のため、mits-skool-pm 経由で再委任予定。",
-        why:"Mits 固有の文言（0→億ロードマップ／後先順位／ワンポケット等）は Mits らしさの核。廃止 draft に残っていた表現を新 scenario に確実に継承しないと「AI が書いた無個性メール」化する。" },
+      { id:"J5", lvl:"done", label:"J5. Day12/Day13 廃止 draft の Mits 固有名文統合完了（Day12「賢くなる楽 vs バカになる楽」→ R2-3 bBIIgOFri6eF 追伸／Day13「AI時代のランチェスター戦略」→ R3-3 cVyMsJyZgHpM 追伸・200 OK・2026-07-27）",
+        note:"Day12「賢くなる楽 vs バカになる楽」を R2-3 mail bBIIgOFri6eF の追伸として統合／Day13「AI時代のランチェスター戦略」を R3-3 mail cVyMsJyZgHpM の追伸として統合完了。両 mail とも UTAGE 200 OK 応答・reserved ステータス維持。元 Day12/Day13 4 通は draft のまま放置（削除せず参照用に残置）。実行日時 2026-07-27。",
+        why:"Mits 固有の文言（0→億ロードマップ／後先順位／ワンポケット等）は Mits らしさの核。廃止 draft に残っていた表現を追伸として新 scenario の該当 mail に確実に継承したことで「AI が書いた無個性メール」化を回避。" },
       { id:"J6", lvl:"todo", label:"🔴 J6. R3-1 リマインダ mail+LINE 新規起草",
         note:"R3-1（第 3 回グループコンサル前日リマインダ）の mail+LINE を新規起草。J5 と同じく mits-skool-pm 経由で実本文取得後に再委任予定。",
         why:"第 3 回は 2 ヶ月契約の中間ポイント。ここでの参加率が完走率を左右する。R3-1 リマインダを起草しないと参加動線が抜ける。" },
