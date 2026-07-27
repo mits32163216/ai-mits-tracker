@@ -315,9 +315,9 @@ const GROUPS = [
       { id:"C4", lvl:"done", label:"Tier 1 #4 会員ログイン URL 配布方式 P/Q/R 判断（既存踏襲・案 P で決着・Mits様 2026-07-27 指示）",
         note:"会員サイトログイン URL の配布方式は既存踏襲＝案 P（決済完了メール S0 経由）で決着。Mits様 2026-07-27 指示。追加開発不要。",
         why:"S0 mail が既に決済完了トリガーで会員サイト URL と Discord 招待 URL を配布している既存経路が実機で成立している（B6 実測結果と整合）。案 P 採用で追加実装ゼロ・購入体験の連鎖が完成する。" },
-      { id:"C5", lvl:"wait", label:"🔵 Tier 1 #5 cron 案 α オペレーション連鎖承認",
-        note:"event-dispatcher（Windows 常駐 1 日 3 回）が新規申込 reader を検知し Slack DM で Mits様通知する仕組みの承認。",
-        why:"通知経路が確定していないと新規申込があっても Mits様が気づかず放置→初動遅れで信頼失う。cron 案 α で承認取得が必要。" }
+      { id:"C5", lvl:"skip", label:"Tier 1 #5 cron 案 α オペレーション連鎖（削除・不要・Mits様 2026-07-27 指示）",
+        note:"cron 案 α の Slack DM で Mits様通知する設計は撤回・削除。Mits様 2026-07-27 指示：「なんで私が気づく必要があるんだ？なんのための自動システムだ？」。Mits様介在（Slack DM 通知→Mits様判定）を前提とした設計は誤り・自動システムは Mits様介在なしで完結すべき。関連：J10 も同様に削除確定済（新方式 reader 未発生・本番稼働後実装が正しい順序）。",
+        why:"Mits様介在前提の通知経路そのものが自動化思想に反する。完全自動化するか本タスク自体不要。cron α の承認取得タスクは削除。" }
     ]},
   { id:"D", cls:"pd", title:"D. Phase 4 Step 3（scenario 再利用 + 商品 scenario 連携修正）", meta:"配信設定",
     items:[
