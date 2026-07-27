@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>BE-02 実装トラッカー（2026-07-27）</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%93%8B%3C/text%3E%3C/svg%3E">
 <style>
 :root{
   --bg:#f7f8fa; --card:#ffffff; --border:#e3e6ec;
@@ -180,12 +181,12 @@ details.glossary summary:hover{color:#2563eb}
 <div class="wrap">
   <a class="back-btn" href="../">← AI-MITS トラッカー一覧に戻る</a>
   <h1>📋 BE-02 実装トラッカー（AIエージェント経営 2ヶ月グルコン）</h1>
-  <div class="sub">最終更新：2026-07-27（F4 R4-3 リマインダ新設完了＋F3 %cancel% 削除完了 3通反映＋D13 商品 scenario 連携変更完了＋J5 廃止 draft 統合完了・実測完了 6件・実装完了 3件反映＋E6/C4 完了）／ Round 1-9 輪番議論 → Phase 4 全 6 Step の実装進捗を平場で追える形に整理。各タスクに 📖 注釈（用語解説）／ 🎯 なぜやる（目的）付き。</div>
+  <div class="sub">最終更新：2026-07-27 v1.2（K 開催スケジュール9枠＋L 用語規約＋M 配信メール最適化3案 Mits様判定待ち＋N LP完読 CRITICAL 6件 Mits様判定待ち を追記／実装準備段階に前進）／ Round 1-9 輪番議論 → Phase 4 全 6 Step の実装進捗を平場で追える形に整理。各タスクに 📖 注釈（用語解説）／ 🎯 なぜやる（目的）付き。</div>
 
   <div class="legend">
     <span><b>ステータス</b>：🟢 完了　🟡 進行中・待機　🔴 未着手　🟣 Mits様判断待ち　⚫ 不要（スコープ外・撤回）</span>
-    <span><b>グループ</b>：A=議論・Plan／B=参謀作業／C=Mits様判断／D=シナリオ／E=会員サイト／F=cron 検証</span>
-    <span><b>凡例内訳</b>：件数は 44 件全体（本ページ最上部の進捗サマリで内訳表示）</span>
+    <span><b>グループ</b>：A=議論・Plan／B=参謀作業／C=Mits様判断／D=シナリオ／E=会員サイト／F=cron 検証／J=追加書き換え・削除確定／K=開催スケジュール／L=用語規約／M=配信メール最適化3案／N=LP CRITICAL 6件</span>
+    <span><b>凡例内訳</b>：件数は本ページ最上部の進捗サマリで動的表示</span>
   </div>
 
   <details class="glossary">
@@ -250,7 +251,7 @@ details.glossary summary:hover{color:#2563eb}
 
   <div id="root"></div>
 
-  <div class="footer">改訂履歴：v1.0=2026-07-27（BE-02 Phase 4 タスク全 44 件 平場化＋注釈＋なぜやる付き）／v1.1=2026-07-27（E6 バンドルコース締切設定完了 close_type=reader_date/close_day=60・C4 会員ログイン URL 配布方式 案 P で決着）</div>
+  <div class="footer">改訂履歴：v1.0=2026-07-27（BE-02 Phase 4 タスク全 44 件 平場化＋注釈＋なぜやる付き）／v1.1=2026-07-27（E6 バンドルコース締切設定完了 close_type=reader_date/close_day=60・C4 会員ログイン URL 配布方式 案 P で決着）／v1.2=2026-07-27（K 開催スケジュール9枠 6件＋L 用語規約 5件＋M 配信メール最適化3案 Mits様判定待ち 7件＋N LP完読 CRITICAL 6件 Mits様判定待ち を追記・実装準備段階へ前進）</div>
 </div>
 
 <script>
@@ -444,6 +445,90 @@ const GROUPS = [
       { id:"J13", lvl:"na", label:"J13. 初期パスワード ハードコード書換（削除・S0 mail の TLDtLQvaG7Ck は UTAGE 側 temporary_password と一致確認済）",
         note:"S0 mail に埋め込まれた初期パスワード TLDtLQvaG7Ck は、UTAGE 側の temporary_password 実装と一致しており書き換え不要。",
         why:"ハードコード疑惑だった値が UTAGE 側実装と整合していることが実機確認で判明。書き換えると逆に整合が壊れる。削除確定。" }
+    ]},
+  { id:"K", cls:"pd", title:"K. 開催スケジュール9枠（Mits様提示 2026-07-27）", meta:"新方式ハイブリッド・全枠 Zoom 単一URL",
+    items:[
+      { id:"K1", lvl:"done", label:"K1. 動画#1・#2 の内容を扱う日 4枠（8/12水 10:00-12:30 / 9/1火 18:00-20:30 / 9/23水 13:30-16:00 / 10/14水 10:00-12:30）",
+        note:"1グルコン枠=2時間半で動画#1と#2の2本分をまとめて扱う。動画は事前配信済（会員サイトで先に視聴）→グルコンで質疑応答・実践・深掘り。Mits様補足『1回の日程ですでに配信している分の動画講義の2回分扱ってグルコンするという意味』。",
+        why:"動画#1・#2 枠を4回配置することで購入タイミングに柔軟に対応（購入 8/1 なら 8/12 が初回・購入 10/1 でも 10/14 が初回として掴める）。参加動線の柔軟性を担保。" },
+      { id:"K2", lvl:"done", label:"K2. 動画#2・#3 の内容を扱う日 3枠（9/2水 10:00-12:30 / 9/22火 18:00-20:30 / 10/14水 13:30-16:00）",
+        note:"動画#2と#3の2本分を1枠2時間半でカバー。",
+        why:"動画#2の総カバー枠数7回（#1・#2 枠×4 + #2・#3 枠×3）・動画#3の総カバー枠数5回を実現する中間層。動画#2は全動画中最多カバーで復習機会を厚く確保。" },
+      { id:"K3", lvl:"done", label:"K3. 動画#3・#4 の内容を扱う日 2枠（9/23水 10:00-12:30 / 10/13火 18:00-20:30）",
+        note:"動画#3と#4の2本分を1枠2時間半でカバー。",
+        why:"動画#4を扱う枠が2回と少ないのはコース終盤の集大成コンテンツで参加者が絞られる想定。同時に契約期間終盤の学習継続を担保。" },
+      { id:"K4", lvl:"done", label:"K4. 同日ダブル開催 2日（9/23水：10:00 #3・#4 + 13:30 #1・#2 / 10/14水：10:00 #1・#2 + 13:30 #2・#3）",
+        note:"9/23水と10/14水は同日2枠開催・1メンバー両参加可能。",
+        why:"熱意の高いメンバーが1日でまとめて2枠学習できる設計。同日ダブル開催の存在は LP・R系リマインダー・event_date 分岐（scenario A4UClMsbK9bg）に反映必要。" },
+      { id:"K5", lvl:"done", label:"K5. Zoom URL 全9枠共通（https://us06web.zoom.us/j/83901270015）",
+        note:"BE-02 全9枠グルコン Zoom を1本の共通URLで運用（B9・C3で確定済）。",
+        why:"複数URL運用だと『今日のURLどれ？』問題発生→単一運用で事故ゼロ。scenario A4UClMsbK9bg の全R系mailで実URL直挿入済（F2 Verification確認済）。" },
+      { id:"K6", lvl:"done", label:"K6. 曜日・時間帯パターン（水曜多数・火曜3枠／昼型 10:00-12:30・午後型 13:30-16:00・夜型 18:00-20:30 の3パターン）",
+        note:"参加者の生活サイクル（平日昼／平日午後／平日夜）に合わせて3時間帯を用意。",
+        why:"1時間帯固定だと購入見送りリスク発生。3時間帯提示で『どこかしら都合が合う』を実現し申込障壁を下げる。" }
+    ]},
+  { id:"L", cls:"pa", title:"L. 用語規約（Mits様確定 2026-07-27）", meta:"「講義→グルコン」レンズ再走査要否は L4 で判定",
+    items:[
+      { id:"L1", lvl:"done", label:"L1. 旧「講義」→ 新「グループコンサルティング（グルコン）」に統一",
+        note:"旧版 scenario D87uWEktb5EP＝Mits様一方的講義形式／新版 A4UClMsbK9bg＝メンバー課題持込・Mits様がグループコンサルする形式。",
+        why:"旧新の scenario 切替（D13 完了）と整合し、配信物全体で名称が揃うことで受講者体験の一貫性を確保。" },
+      { id:"L2", lvl:"done", label:"L2. 「個別コンサル」「1対1」「マンツーマン」表現は禁止 → 「グループコンサル」で統一",
+        note:"1対1誤解を生む表現を禁止。全 subagent に memory feedback_no_kobetsu_consul_use_group_consul.md 適用（2026-07-27 制定）。",
+        why:"BE-02 は複数メンバー参加型グループコンサル形式。個別コンサル表現があると価格・体験期待の齟齬が発生し返金・炎上リスク。" },
+      { id:"L3", lvl:"done", label:"L3. 動画講義（会員サイト配信）= 事前学習素材／グルコン枠（2時間半）= 質問・課題持込のグループコンサル時間",
+        note:"動画講義とグルコン枠の役割分離を明示。",
+        why:"『動画で学習→グルコンで実践質問』の学習サイクルを言語化することで受講者が正しい使い方を掴める。" },
+      { id:"L4", lvl:"wait", label:"L4. 🟣 全配信メール本文「講義→グループコンサル」レンズ再走査要否判定（S系初期・M系フォロー・R系リマインダ 計 56 通級）",
+        note:"⚠️ Mits様判定待ち：全配信メール（Step S1-S7・M#2-#4/M-wrap・R系リマインダ）の本文で「講義」「本番」「準備」等の講義形式的文言を「グルコン」「持ち寄る」等のコンサル形式的文言に置換要否をMits様に確認。",
+        why:"L1-L3 の用語規約を配信物に貫徹しないと受講者が旧「講義」期待で参加し違和感を持つ。ただし本文書き換えは越権リスク（feedback_never_expand_designation_without_permission.md）が高いためMits様判定必須。" },
+      { id:"L5", lvl:"done", label:"L5. 文言置換必須リスト（❌ 講義形式的 → ⭕ コンサル形式的）",
+        note:"❌『第N回開講しました』『本番目前』『準備してください』／⭕『#N・#N+1 の内容でグルコンやります』『質問・課題を持ち寄ってください』",
+        why:"具体的な置換例を提示することで L4 レンズ再走査時の判断基準を明確化。Mits様判定（L4）が『置換GO』なら本リストがマスター。" }
+    ]},
+  { id:"M", cls:"pc", title:"M. 配信メール最適化3案（Mits様判定待ち）", meta:"Day8-14 14通・現状 draft [廃止]・前セッション越権是正",
+    items:[
+      { id:"M1", lvl:"wait", label:"M1. 🟣 前提：前セッション越権事故（S0-S7 だけ reserved・Day8-14 の14通を勝手に [廃止] draft 化）を最適化3案で是正",
+        note:"前セッションの参謀＝mits-skool-pm が Mits様承認なしに Day8-14 の 14通全部を draft [廃止] 化した越権が発覚。3案提示で是正判定を仰ぐ構造。",
+        why:"越権事故（feedback_never_expand_designation_without_permission.md）の再発防止＝分岐可視化＋Mits様判定で決着させる CLAUDE.md 禁止事項⑨遵守。" },
+      { id:"M2", lvl:"wait", label:"M2. 🟣 案A（全復活・軽微修正）：Day8-14 14通全復活＋各本文「本番」「Day14」等の日曜クラス前提文言を中立表現に置換",
+        note:"14通全部 reserved に戻し文言置換。ただし Day11「準備チェック」・Day14「本番前最終確認」は新方式（初回グループ講義日が購入タイミングで可変）と構造矛盾（購入 8/1 なら初回 8/12=Day11-12 直前・購入 8/25 なら初回 9/1=Day7 直前）で成立困難。",
+        why:"案A採用ならMits様の哲学14通全部活かせるが、Day11/Day14 の構造書き換えが必須で作業量大・矛盾リスク残存。LP §開講形式『随時参加型・予約不要』と『本番目前チェックリスト』が矛盾。" },
+      { id:"M3", lvl:"wait", label:"M3. 🟣🌟 参謀推薦 案B（選別復活）：本質哲学9通復活（Day8/9/10/12/13 mail + Day8/9/10/12 LINE）＋日曜クラス完全前提5通は draft 継続",
+        note:"復活9通＝Day8/9/10/12/13 mail + Day8/9/10/12 LINE（Mits様肉声哲学：英語比喩／サブエージェント発見譚／AIスタッフ人数論／賢くなる楽／ランチェスター）／継続廃止5通＝Day11 mail+LINE / Day13 LINE / Day14 mail+LINE（本番目前告知色濃）。本文差替 20行程度・status draft→reserved 9通。",
+        why:"参謀推薦。Mits様の哲学コンテンツを活かしつつ購入タイミング可変性と構造矛盾しない。LP §開講形式『随時参加型・予約不要』訴求と両立。作業量最小・Mits様セールスレターと整合。" },
+      { id:"M4", lvl:"wait", label:"M4. 🟣 案C（全書き直し）：Day8-14 14通を新方式向けに全部書き直し",
+        note:"新方式（随時参加ハイブリッド・初回グループ講義日可変）向けに14通全部 subject+body 新規起草→Mits様レビュー→message_update。",
+        why:"新方式に完全最適化されるが、参謀が本文書き直しは越権リスク大・Mits様の英語比喩／サブエージェント発見譚／賢くなる楽等の本質コンテンツを潰す・作業量最大。" },
+      { id:"M5", lvl:"wait", label:"M5. 🟣 Mits様判定 #1：案A / 案B / 案C のどれで進めるか（参謀推薦=案B）",
+        note:"3案分岐可視化・決定はMits様。",
+        why:"案選定がなければ Day8-14 14通の draft [廃止] 状態のまま新規購入者に配信ラインが薄いまま本番運用に入る。" },
+      { id:"M6", lvl:"wait", label:"M6. 🟣 Mits様判定 #2：案B 採用の場合、Day13 LINE の扱い（廃止継続 or 書き換え復活）",
+        note:"Day13 LINE は『本番まで、もう少し』構造が骨格・書き換えると別文書化。Day13 mail の中身（ランチェスター戦略）と重複するため mail のみで代替可能と参謀判断。",
+        why:"Day13 LINE の位置付けをMits様が判定しないと復活9通のカウントが確定しない。" },
+      { id:"M7", lvl:"wait", label:"M7. 🟣 Mits様判定 #3：案B 採用の場合、Day8/9/10/12/13 の本文差替原案の起草者（参謀起草 or Mits様直手直し）",
+        note:"日程言及 3-5箇所×9通=約20行の本文差替原案を、参謀が先に起草しMits様レビューするか、Mits様が直接手直しするかの分担決定。",
+        why:"起草分担が決まらないと実施セッションの作業内容が確定しない。参謀起草の場合は Mits様承認後に message_update 実行。" }
+    ]},
+  { id:"N", cls:"pc", title:"N. LP完読 CRITICAL 6件（Mits様判定待ち）", meta:"新LP v8pQL82x2Am1・v25→v26相当の大改訂・実装齟齬",
+    items:[
+      { id:"N1", lvl:"wait", label:"N1. 🟣 CRITICAL① 決済通貨 USD 対応（新LP $800/$888 表示 vs UTAGE product SKU 通貨設定）",
+        note:"新LPは $800（2ヶ月版）／$888（3ヶ月版）で表示・段階的値引き構造導入。UTAGE product ラインナップ（BE-02 グルコン系）の通貨設定が JPY→USD に切替済か、または JPY表示のまま『$≒円換算』で運用か要確認。『※決済確定時点の為替レート優先・1ドル160円前後で計算』注記あり。",
+        why:"通貨設定不整合だと決済失敗or金額齟齬で申込者との金銭トラブル発生。UTAGE product refresher で BE-02 商品 OuAPF2gwGhYh 配下 2ヶ月版 Yxs2XikI1QOi・3ヶ月版 eAPFTnsdaM0O の SKU 通貨設定を実機確認必要。" },
+      { id:"N2", lvl:"wait", label:"N2. 🟣 CRITICAL② AI活用オーダーメードコンサルティング（45分）実運用フロー（3ヶ月版早期特典）",
+        note:"3ヶ月プランかつ7日前まで申込の早期特典として『AI活用オーダーメードコンサルティング 45分』無料を明記。予約枠（TidyCal等）／申込者への案内フロー／scenario A4UClMsbK9bg 側の自動配信メール未実装。",
+        why:"早期特典で明記した以上、3ヶ月版購入者に自動で予約リンクを配信する scenario 分岐が必須。未実装のまま申込受付開始すると Mits 手動フォローで漏れ→約束不履行事故。" },
+      { id:"N3", lvl:"wait", label:"N3. 🟣 CRITICAL③ Claude Code Max ≒$100 補助（3ヶ月版のみ）実運用フロー",
+        note:"3ヶ月版で $1,000→$888 の $100 補助を明記（Claude Code Max 月額契約分の補助）。キャッシュバック方式か事前控除か、いつどう返金するかの運用定義未確定。",
+        why:"金銭補助フローが決まっていないと決済後の返金／控除処理が破綻。会計処理・領収書表示も影響する。Mits様の運用方針決定が必須。" },
+      { id:"N4", lvl:"wait", label:"N4. 🟣 CRITICAL④ 動画講義#1〜#4 実物投入確認（会員サイト配信設定・動画本体）",
+        note:"新LPは動画講義4本を2週間毎配信＝#1『外部記憶と判断の土台』／#2『Agent Teams と業務落とし込み』／#3『メモリと衝突・道具の整備』／#4『運用サイクル』。UTAGE 会員サイト mxjeSnXmJDbO の BE-02 コース MaXquphUqbjS 配下 lesson 4件（tDZEenqVJUbz/MUJlYDdMaMOj/wfIQ8FFzX7LH/4q9jwVTKPK9x）にレッスン枠は存在・release_type 設定済（E1-1〜E1-4 完了・E2 レッスングループ公開確認済）。動画本体（HTML/media）実物投入は E3 M14 遵守で Mits様準備待ち。",
+        why:"レッスン枠は用意済だが動画本体空のまま申込受付開始すると『特典動画配信』が空振り→信頼喪失。動画準備完了タイミングと申込受付開始の順序決定が必要。" },
+      { id:"N5", lvl:"wait", label:"N5. 🟣 CRITICAL⑤ 申込直後配信の特典3点実在確認（Claude Code設定動画 / AIエージェント基本講座 / コミュニティ事前参加）",
+        note:"新LPで申込直後配信を約束：①Claude Code の基本設定動画（インストール／初期設定／各種連携）／②AIエージェント基本講座（Agent Teams／subagent／SendMessage／skill／hook）／③コミュニティ事前参加（Skool招待 or UTAGE会員サイト招待）。各動画の実在確認・招待フロー実装確認要。",
+        why:"申込直後配信の約束が空振ると初動体験が最悪化＝口コミ悪化・返金要請リスク。既存 F0-04/F1-04 系 Claude Code 講座流用か新設か、Agent Teams 講座の教材化状態、コミュニティ招待自動化の実装状態を Mits様確認必要。" },
+      { id:"N6", lvl:"wait", label:"N6. 🟣 CRITICAL⑥ 正テンプレ違反（CLAUDE.md 禁止⑦・独自HTML/CSS書き起こし）",
+        note:"新LP v8pQL82x2Am1 は正テンプレ3種（night/gold/gold_card）のいずれからも派生せず独自 HTML/CSS を完全新規書き起こし（kuse-grid/voice-grid/benefit-list/obj-block/bg-grid/bg-orb/neon-* は正テンプレに存在しない独自class）。過去事故（2026-05-29 sales_letter_LP_v24 独自class事故）と同型。",
+        why:"Mits様裁量で意図的な独自路線なら OK だが、正テンプレとの位置付け（gold_card への昇格? night からの branch?）を references/lp_design_system_index.md へ登録が必要。禁止⑦の適用範囲を再定義しないと今後の LP 制作で参謀が判断迷う。" }
     ]}
 ];
 
