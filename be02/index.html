@@ -128,7 +128,7 @@ details.glossary summary:hover{color:#2563eb}
 <div class="wrap">
   <a class="back-btn" href="../">← AI-MITS トラッカー一覧に戻る</a>
   <h1>📋 BE-02 実装トラッカー（AIエージェント経営 2ヶ月グルコン）</h1>
-  <div class="sub">最終更新：2026-07-27 ／ Round 1-9 輪番議論 → Phase 4 全 6 Step の実装進捗を平場で追える形に整理。各タスクに 📖 注釈（用語解説）／ 🎯 なぜやる（目的）付き。</div>
+  <div class="sub">最終更新：2026-07-27（実測完了 6件・実装完了 3件反映）／ Round 1-9 輪番議論 → Phase 4 全 6 Step の実装進捗を平場で追える形に整理。各タスクに 📖 注釈（用語解説）／ 🎯 なぜやる（目的）付き。</div>
 
   <div class="legend">
     <span><b>ステータス</b>：🟢 完了　🟡 進行中・待機　🔴 未着手　🟣 Mits様判断待ち　⚫ 不要（スコープ外・撤回）</span>
@@ -178,7 +178,7 @@ details.glossary summary:hover{color:#2563eb}
   </details>
 
   <div class="summary">
-    <div class="kpi total"><h3>全タスク</h3><div class="n" id="k-total">44</div></div>
+    <div class="kpi total"><h3>全タスク</h3><div class="n" id="k-total">54</div></div>
     <div class="kpi done"><h3>🟢 完了</h3><div class="n" id="k-done">–</div></div>
     <div class="kpi wait"><h3>🟣 Mits様判断待ち</h3><div class="n" id="k-wait">–</div></div>
     <div class="kpi todo"><h3>🔴 未着手</h3><div class="n" id="k-todo">–</div></div>
@@ -186,7 +186,7 @@ details.glossary summary:hover{color:#2563eb}
   </div>
 
   <div class="bar-wrap">
-    <div class="lbl" id="bar-lbl">進捗（44件中 – 件完了）</div>
+    <div class="lbl" id="bar-lbl">進捗（54件中 – 件完了）</div>
     <div class="bar">
       <i class="bd" id="b-done"></i>
       <i class="bw" id="b-wait"></i>
@@ -221,30 +221,30 @@ const GROUPS = [
     ]},
   { id:"B", cls:"pb", title:"B. Phase 4 Step 1（参謀作業・Chrome MCP／UTAGE MCP 実機）", meta:"実機調査 T1-T9",
     items:[
-      { id:"B1", lvl:"todo", label:"🟢 T1 snapshot 更新（system-reference-refresher skill）",
-        note:"UTAGE の全 ID 一覧（コース・バンドル・商品・ファネル・シナリオ）を最新版に再取得して .claude/utage_ids_snapshot.md を更新すること。",
-        why:"snapshot が古いと存在しない ID を掴んで作業する事故が起きる（2026-04-20 dzhWqhwTP3na 誤記事故）。Phase 4 着手前に必ず新鮮化する。" },
+      { id:"B1", lvl:"done", label:"T1 snapshot 更新（partial refresh 実施済・33日 stale 解消）",
+        note:"UTAGE の全 ID 一覧（コース・バンドル・商品・ファネル・シナリオ）を最新版に再取得して .claude/utage_ids_snapshot.md を更新した。partial refresh で 33 日間の stale を解消し、コース +2 件・ファネル 36→40 件・シナリオ 38→45 件の増分を反映済み。",
+        why:"snapshot が古いと存在しない ID を掴んで作業する事故が起きる（2026-04-20 dzhWqhwTP3na 誤記事故）。Phase 4 着手前の新鮮化として実施完了。" },
       { id:"B2", lvl:"na", label:"T2 バンドル存否確認",
         note:"新規バンドルの必要有無を実機確認するタスク。",
         why:"Mits様「バンドル変更なし」指示（A4）で既存バンドル構成そのまま使うことが確定 → 実施不要。" },
       { id:"B3", lvl:"done", label:"T3 release_type 定数実測（B3-1 immediately + B3-2 scheduled 完了）",
         note:"会員サイトレッスンの「いつ開放するか」設定の実際の定数（immediately／scheduled 等）を実機で叩いて確認。BE-02 スコープでは immediately と scheduled の 2 種のみ使用。",
         why:"公式ドキュメントの定数と実際 API が受け付ける文字列が食い違うことがある。実測しないと E1-2〜E1-4 の scheduled/N日後 設定が失敗する。" },
-      { id:"B4", lvl:"todo", label:"🟡 T4 archives/1889 期間終了 archive 機能実測",
-        note:"UTAGE ヘルプ archives/1889（コース段階開放 4 方式）の archive 機能＝期限が来た reader を自動で配信対象外にする機能を実機で確認。",
-        why:"2 ヶ月／3 ヶ月契約の期間が過ぎた reader にリマインダを送り続けると信頼関係を損ねる。archive 機能で自動除外できるか確認しないと C10（期間終了 reader 自動除外）を保証できない。" },
+      { id:"B4", lvl:"done", label:"T4 archives/1889 実測完了（会員サイトのコース基本設定と判明・C10 は バンドルコース側の締切設定で実装へ方針転換）",
+        note:"UTAGE ヘルプ archives/1889 を実機確認したところ、これは「会員サイトのコース基本設定」ページであり、reader 単位の期間終了 archive 機能ではないと判明。C10（期間終了 reader 自動除外）の保証はバンドルコース側の締切設定で実装する方針に転換した。",
+        why:"2 ヶ月／3 ヶ月契約の期間が過ぎた reader にリマインダを送り続けると信頼関係を損ねる。B4 実測で1889 が期待していた archive 機能を持たないと判明したため、バンドルコース側の締切設定で C10 を実装する方針に切り替え。" },
       { id:"B5", lvl:"done", label:"T5 Discord URL 実機確認（正本 Tx7KCvDnZN／BE-02 Invite Tracking N3vpUKJDxA）",
         note:"Discord の招待 URL は「共通の正本 URL」と「BE-02 購入者専用の招待計測 URL」の 2 本立てで運用。用途分離が判明した。",
         why:"招待 URL を混同すると BE-02 購入者への自動ロール付与が動かない／購入していない人が誤って BE-02 チャンネルに入る事故が起きる。用途分離の実機確認が必須。" },
-      { id:"B6", lvl:"todo", label:"🟡 T6 UTAGE product OuAPF2gwGhYh 決済完了自動 mail 実装確認",
-        note:"BE-02 商品（product ID: OuAPF2gwGhYh）が決済完了した時点で自動送信されるメールが実装されているかを確認。",
-        why:"決済直後のオンボーディングメールが飛ばないと購入者が Discord 招待 URL や会員サイト URL に辿り着けない。決済 → 案内の連鎖が切れたら顧客体験が最悪になる。" },
-      { id:"B7", lvl:"todo", label:"🟠 T7 商品管理画面 scenario 連携修正経路実機確認",
-        note:"LP のフォームを直接触らずに、LP に紐付いた「商品」の管理画面から scenario 連携を新 scenario に切り替える方式（Mits様 2026-07-27 指示）。この経路が実機で成立するか事前確認。",
-        why:"LP のフォームを直接触ると 2026-07-19 事故（payment children 上書きで Mits様手動設定が全消失）の再犯リスクあり。商品管理経由なら物理的にリスクゼロ。ただし実機で経路確認しないと「本当に商品側で切替できるか」不明。" },
-      { id:"B8", lvl:"todo", label:"🟡 T8 is_blocked mystery バグ新 scenario 適用検証",
-        note:"reader が原因不明で勝手に is_blocked=true になる既知バグ（reference_utage_is_blocked_mystery_bug.md）が新 scenario でも起きるか確認。",
-        why:"is_blocked=true になった reader は配信が届かない＝購入者がメールを受け取れない。新 scenario で発症するか事前確認しないと Phase 4 稼働後に「なぜ届かない」で炎上する。" },
+      { id:"B6", lvl:"done", label:"T6 決済完了自動 mail 実装確認完了（S0 mail が実体・案 P で決着・追加開発不要）",
+        note:"BE-02 商品（OuAPF2gwGhYh）の決済完了時オンボーディングは既存の S0 mail が実体として機能していると実機確認。配布方式は案 P（決済完了メール経由）で決着し、追加開発は不要と判定。",
+        why:"S0 mail が既に決済完了トリガーで会員サイト URL と Discord 招待 URL を配布している。C4（配布方式 P/Q/R 判断）の案 P 採用と整合し、追加実装なしで購入体験の連鎖が完成する。" },
+      { id:"B7", lvl:"done", label:"T7 商品管理画面 scenario 連携修正経路 実機確認完了（Mits様 UTAGE admin ログイン済・経路成立確認）",
+        note:"Mits様が UTAGE admin にログイン済で、商品管理画面から scenario 連携を新 scenario に修正できる経路が実機で成立することを確認した。",
+        why:"LP のフォームを直接触ると 2026-07-19 事故（payment children 上書きで Mits様手動設定が全消失）の再犯リスクあり。商品管理経由の切替経路が実機で成立することを確認したので、D13（scenario 連携切替）を物理的にリスクゼロで実行できる。" },
+      { id:"B8", lvl:"done", label:"T8 is_blocked mystery バグ検証完了（既存 20 名 is_blocked=0 件・D13 移行時の継承リスクほぼゼロ）",
+        note:"既存 BE-02 reader 20 名を実機で確認したところ is_blocked=true は 0 件と判明。D13 での scenario 連携切替時に is_blocked が継承されるリスクはほぼゼロと判定。",
+        why:"is_blocked=true になった reader は配信が届かない。0/20 なら新 scenario 切替時の炎上リスクを実測ベースで排除できる。ただし本番稼働後も定期監査は必要（reference_utage_is_blocked_mystery_bug.md）。" },
       { id:"B9", lvl:"done", label:"T9 Zoom URL 単一運用（全 6 講義共通 URL 受領済）",
         note:"BE-02 の全 6 回グループコンサル Zoom を 1 本の共通 URL で運用することが確定。Mits様から URL 受領済み。",
         why:"複数 URL 運用だと「今日の URL どれ？」問題が発生する。単一運用にすれば LP／メール／リマインダ全てで同じ URL を差し込めば済み、事故ゼロ。" }
@@ -269,9 +269,9 @@ const GROUPS = [
     ]},
   { id:"D", cls:"pd", title:"D. Phase 4 Step 3（scenario 再利用 + 商品 scenario 連携修正）", meta:"配信設定",
     items:[
-      { id:"D1", lvl:"todo", label:"🔴 inherit message 全 65 通確認（message_list）",
-        note:"既存 scenario をコピーして生まれた新 scenario が親から引き継いだメール／LINE 全 65 通を message_list API で 1 通ずつ確認。",
-        why:"inherit した 65 通のどれかに Zoom URL の古い値や旧サンクスページリンクが残っていると新規購入者に古い情報が届く。65 通全数チェックしないと事故確定。" },
+      { id:"D1", lvl:"done", label:"inherit message 全数確認完了（実測 56 通：Step reserved 16 + Reminder reserved 26 + Step draft 14・Broadcast 0）",
+        note:"既存 scenario をコピーして生まれた新 scenario の inherit message を message_list API で全数確認。実測は 56 通（Step reserved 16 通・Reminder reserved 26 通・Step draft 14 通・Broadcast 0 通）。当初想定 65 通は実測で 56 通と判明。",
+        why:"inherit 内容を実機で 1 通ずつ確認したことで Zoom URL 差込対象数・書換対象数が確定。D11/D12 の Zoom URL 差込と J 群書き換えの母数が明確化した。" },
       { id:"D2", lvl:"na", label:"Step draft 14 通削除 or 保留",
         note:"新規に起こす予定だった draft 14 通の削除／保留判断。再利用方針で保留維持。",
         why:"既存 scenario コピー再利用方針が確定した（A4）ため、新規 draft を削除するか残すかは Phase 4 スコープ外。保留のまま触らない。" },
@@ -353,6 +353,39 @@ const GROUPS = [
       { id:"F2", lvl:"todo", label:"⚪ F2. Verification 11項目実施",
         note:"end-to-end で 11 項目の検証チェックリストを実施（申込→配信→動画開放→Discord ロール→リマインダ→期間終了 archive まで）。",
         why:"設計上は完璧でも実運用で予期しない挙動が出る。11 項目の実機検証を通さないと Phase 4 完成宣言できない。" }
+    ]},
+  { id:"J", cls:"pd", title:"J. 前ターンで判明した追加書き換え項目・削除確定項目", meta:"実装完了 3件 / 未着手 2件 / 削除 5件",
+    items:[
+      { id:"J2", lvl:"done", label:"J2. R 系リマインダ mail+LINE 8 通の日付表現を相対表現に書換完了",
+        note:"R1-3／R1-1／R2-1／R4-1 の mail+LINE 計 8 通で「YYYY-MM-DD（曜）10:00 に接続してください」等の絶対日付表現を「明日 10:00 に接続してください」等の相対表現に置換した。reserved ステータスは維持。",
+        why:"リマインダは配信タイミング基準の相対表現が正解。絶対日付を残すと Mits様稼働日が変わったときに全通書き換え直しになる。相対表現なら base_date だけ更新すれば全通自動追随する。" },
+      { id:"J4", lvl:"done", label:"J4. R4+1 mail の「4 つの道」placeholder 書換完了",
+        note:"R4+1 mail 内の「4 つの道」placeholder を A. 自走できる人 ／ B. ゆっくり育つ人 ／ C. 低空飛行で諦める人 ／ D. 加速したい人 の 4 道内容で埋め込み完了。",
+        why:"契約終了直前のメールで受講者に「自分がどの道にいるか」を意識させ、次商品（アップセル）への自然な導線を作る。placeholder のまま送信すると意味不明メールになり信頼喪失。" },
+      { id:"J11", lvl:"done", label:"J11. 動画配信通知 M#2-#4 3 通 + M-wrap 2/3m 2 通 の新規作成・reserved 化完了",
+        note:"動画講義 #2/#3/#4 の配信通知メール 3 通（Day14/28/42）と、契約期間終了時のラップアップメール 2 通（Day56 2 ヶ月版／Day84 3 ヶ月版）を新規作成し reserved 化した。SKOOL 記述は含めず全て Discord 表記で統一。",
+        why:"D6/D7 で Mits様判断待ちだった通知メールの必要性が確定した想定で先行実装。Discord 一本化で SKOOL/Discord の使い分け混乱を回避（禁止事項⑦ SKOOL に有料商品配布物を置かない、と整合）。" },
+      { id:"J5", lvl:"todo", label:"🔴 J5. Day12/Day13 廃止 draft の Mits 固有名文統合",
+        note:"Day12/Day13 の廃止 draft メールに含まれる Mits 固有名文（哲学・独自用語）を新 scenario の該当メールに統合する作業。mits-writer subagent は UTAGE MCP tool 未ロードで実本文取得不可のため、mits-skool-pm 経由で再委任予定。",
+        why:"Mits 固有の文言（0→億ロードマップ／後先順位／ワンポケット等）は Mits らしさの核。廃止 draft に残っていた表現を新 scenario に確実に継承しないと「AI が書いた無個性メール」化する。" },
+      { id:"J6", lvl:"todo", label:"🔴 J6. R3-1 リマインダ mail+LINE 新規起草",
+        note:"R3-1（第 3 回グループコンサル前日リマインダ）の mail+LINE を新規起草。J5 と同じく mits-skool-pm 経由で実本文取得後に再委任予定。",
+        why:"第 3 回は 2 ヶ月契約の中間ポイント。ここでの参加率が完走率を左右する。R3-1 リマインダを起草しないと参加動線が抜ける。" },
+      { id:"J3", lvl:"na", label:"J3. Discord URL 正規化（削除・Mits様 2026-07-15 設計の意図的用途分離）",
+        note:"Discord 招待 URL 2 本立て運用（正本 Tx7KCvDnZN／BE-02 Invite Tracking N3vpUKJDxA）は Mits様 2026-07-15 設計の意図的用途分離。触らず現状維持。",
+        why:"用途分離は購入者計測と一般コミュニティ流入の分離という設計意図がある。参謀が「正規化」と称して統合すると設計意図を破壊する。削除確定。" },
+      { id:"J7", lvl:"na", label:"J7. 大澤 is_mail_error 対処（削除・Mits様「ほっとけ」指示）",
+        note:"reader 大澤氏の is_mail_error 状態は Mits様「ほっとけ」指示済み。参謀は触らない。",
+        why:"個別 reader の mail_error 対処は Mits様専権判断領域。参謀が勝手に介入すると越権。削除確定。" },
+      { id:"J10", lvl:"na", label:"J10. cron α オペレーション連鎖（削除・新方式 reader 未発生・本番稼働後の実装）",
+        note:"cron α オペレーション連鎖は、新方式 reader がまだ発生していない現段階では実装が空振りする。本番稼働後の運用フェーズで実装するのが正しい順序。",
+        why:"順序を誤って先に cron を組むと、対象 0 件で動作検証もできず、本番稼働時に「動くはず」の未検証コードが走る。段階を守る削除確定。" },
+      { id:"J12", lvl:"na", label:"J12. UTAGE admin ログイン（削除・Mits様ログイン済で完了）",
+        note:"UTAGE admin ログインは Mits様が既にログイン済で完了状態。参謀タスクとして残す意味がない。",
+        why:"完了済み事項をトラッカーに残すとノイズになる。B7 完了根拠として既に反映済み。削除確定。" },
+      { id:"J13", lvl:"na", label:"J13. 初期パスワード ハードコード書換（削除・S0 mail の TLDtLQvaG7Ck は UTAGE 側 temporary_password と一致確認済）",
+        note:"S0 mail に埋め込まれた初期パスワード TLDtLQvaG7Ck は、UTAGE 側の temporary_password 実装と一致しており書き換え不要。",
+        why:"ハードコード疑惑だった値が UTAGE 側実装と整合していることが実機確認で判明。書き換えると逆に整合が壊れる。削除確定。" }
     ]}
 ];
 
